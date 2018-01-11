@@ -1,0 +1,32 @@
+{
+  "name": "treel",
+  "version": "1.0.0",
+  "description": "A minimalistic learning management system.",
+  "main": "server.js",
+  "scripts": {
+    "webpack": "webpack",
+    "node-sass": "node-sass --watch --include-path css sass/treel.scss public/css/treel.css --output-style compact"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NimJay/treel.git"
+  },
+  "author": "Nim",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/NimJay/treel/issues"
+  },
+  "homepage": "https://github.com/NimJay/treel#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.16.2",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "node-sass": "^4.7.2"
+  }
+}
