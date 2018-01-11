@@ -1,0 +1,11 @@
+# Paths listed here will be completely ignored by git.
+
+# Node dependencies.
+src/node_modules
+
+# Compiled JS and CSS.
+src/public/js/treel.js
+src/public/css/treel.css
+
+# Occasionally created by npm commands.
+src/package-lock.json
