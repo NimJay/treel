@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const PORT = 3003;
 var app = express();
@@ -6,7 +7,7 @@ var app = express();
 app.use(express.static(__dirname + '/../public'));
 
 // Send index.html for all pages.
-var sendIndex = (req, res) => {res.sendFile(__dirname + '/../public/index.html');}
+var sendIndex = (req, res) => {res.sendFile(path.resolve(__dirname + '/../public/index.html'));}
 app.get('/about', sendIndex);
 app.get('/sign-up', sendIndex);
 
