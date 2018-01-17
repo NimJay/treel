@@ -8,10 +8,10 @@ import {
 } from 'react-router-dom';
 
 
-// The various pages.
-const HomePage = () => (<div>Home</div>);
-const AboutPage = () => (<div>About</div>);
-const SignUpPage = () => (<div>Sign Up</div>);
+// Import the various pages.
+import AboutPage from './pages/AboutPage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import SignUpPage from './pages/SignUpPage.jsx';
 
 
 // The outer-most React component. This is where is all starts.
