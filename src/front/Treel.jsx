@@ -18,9 +18,6 @@ import SignUpPage from './pages/SignUpPage.jsx';
 const Treel = () => (
     <BrowserRouter>
         <div>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/sign-up">Sign Up</Link>
             <Route exact path="/" component={HomePage} />
             <Route path="/about" component={AboutPage} />
             <Route path="/sign-up" component={SignUpPage} />
