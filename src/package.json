@@ -4,6 +4,7 @@
   "description": "A minimalistic learning management system.",
   "main": "server.js",
   "scripts": {
+    "nodemon": "nodemon back/Server.js",
     "webpack": "webpack",
     "node-sass": "node-sass --watch --include-path css sass/treel.scss public/css/treel.css --output-style compact"
   },
@@ -24,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.2",
+    "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
