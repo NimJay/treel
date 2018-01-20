@@ -1,3 +1,5 @@
+@import 'reset'; // Reset CSS for browser consistency.
+
 // Variables
 $color-green: rgb(112, 220, 82);
 $color-black: rgb(40, 40, 40);
@@ -6,23 +8,29 @@ $color-blue: rgb(82, 114, 231);
 $color-purple: rgb(190, 82, 220);
 
 body {
-    font-family: 'Muli', sans-serif;
     font-size: 18px;
     line-height: 1.5em;
     color: $color-black;
     background-color: rgb(250, 250, 250);
 }
-
-h1 {
-    font-weight: normal;
+body, input, button {
+    font-family: 'Muli', sans-serif;
 }
 
+h1 {
+    font-size: 32px;
+    line-height: 1em;
+    margin: 20px 0px 0px 0px;
+    font-weight: normal;
+}
+p {
+    margin: 20px 0px 10px 0px;
+}
 a {color: $color-blue;}
 // a:visited {color: $color-purple;}
 
-a.button {
-    font-size: 18px;
-    margin-left: 20px;
+button, a.button {
+    font-size: 20px;
     padding: 10px 25px 12px 25px;
     border: none;
     outline: none;
@@ -36,15 +44,40 @@ a.button {
 .buttons-right {
     margin-top: 50px;
     text-align: right;
+    button, a.button {
+        margin-left: 20px;
+    }
 }
 .buttons-left {
     margin-top: 50px;
     text-align: left;
-    a.button {
-        margin: 0px 20px 0px 0px;
+    button, a.button {
+        margin-right: 20px;
     }
 }
 
+.errormessage {
+    color: $color-red;
+    min-height: 3em;
+}
+
+input[type=text], input[type=password] {
+    margin: 0px 0px 30px 0px;
+    width: 90%;
+    max-width: 350px;
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-bottom: solid 2px rgba(0, 0, 0, 0.2);
+    &:focus {
+        border-bottom: solid 2px $color-green;
+    }
+}
+
+#page-home {
+    text-align: center;
+}
 #page-about {
     margin-top: 80px;
 }
