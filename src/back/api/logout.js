@@ -1,5 +1,9 @@
+const Output = require('./util/Output.js').Output;
+
 function post(req, res) {
-    res.json('TODO: Implement /logout.');
+    var o = new Output(res);
+    req.session.userId = null;
+    o.set().out();
 }
 
 module.exports = { post };
