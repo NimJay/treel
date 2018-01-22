@@ -50,6 +50,10 @@ const ERRORS = {
     'EMAIL_TAKEN': {
         code: 6,
         message: 'Email already in use'
+    },
+    'INVALID_COMBO': {
+        code: 7,
+        message: 'Invalid combination'
     }
 };
 
