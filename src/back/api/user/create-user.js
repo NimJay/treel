@@ -38,7 +38,6 @@ function post(req, res) {
                     // Create user, and output. (TODO: login.)
                     newUser = new User({ email, passwordHash, name, type });
                     newUser.save(function (err, newUser) {
-                        newUser.passwordHash = undefined; // Hide hash.
                         if (err) return o.err('DATABASE').out();
                         return o.set('newUser', newUser).out();
                     });

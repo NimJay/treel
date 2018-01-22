@@ -21,6 +21,12 @@ function loadSchemas() {
         passwordHash: String,
         type: Number,
         name: String
+    },{
+        toJSON: {
+            transform: function (doc, ret) {
+                delete ret.passwordHash;
+            }
+        }
     });
     var UserModel = mongoose.model('User', userSchema);
 }

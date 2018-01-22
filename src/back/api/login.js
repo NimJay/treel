@@ -26,7 +26,6 @@ function post(req, res) {
             // Login!
             if (err) return o.err().out();
             req.session.userId = user._id;
-            user.passwordHash = undefined;
             o.set('user', user).out();
 
         });
