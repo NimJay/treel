@@ -1,0 +1,16 @@
+/**
+ * Styles for <Selector>.
+ */
+
+div.selector {
+    > span {
+        opacity: 0.6;
+        display: inline-block;
+        margin: 5px 20px 0px 0px;
+        cursor: pointer;
+        outline: none;
+        transition: color 100ms ease-in, opacity 100ms ease-in;
+        &:hover, &:focus {opacity: 0.9;}
+        &.active {color: $color-green;opacity: 1;}
+    }
+}
