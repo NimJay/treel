@@ -39,7 +39,7 @@ function post(req, res) {
                     newUser = new User({ email, passwordHash, name, type });
                     newUser.save(function (err, newUser) {
                         if (err) return o.err('DATABASE').out();
-                        return o.set('newUser', newUser).out();
+                        return o.set('user', newUser).out();
                     });
 
                 });

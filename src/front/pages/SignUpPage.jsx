@@ -1,17 +1,23 @@
+import { ajax } from 'jquery';
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { User } from '../model/User.js';
 
 
 const SignUpPage = ({ app, setApp }) => (
     <div>
         {app.isLoggedIn()
             ? <LoggedInSection setApp={setApp} />
-            : <SignUpSection setApp={setApp} />}
+            : <SignUpSectionWithRouter setApp={setApp} />}
+        <nav className="block row" style={{maxWidth: "500px"}}>
+            <Link to="/">Home</Link>
+        </nav>
     </div>
 );
 
 
 const LoggedInSection = ({ setApp }) => (
-    <section className="block container">
+    <section className="block row" style={{maxWidth: "500px"}}>
         <p>You must log out to create a new account.</p>
         <button onClick={setApp.bind({ user: null })}>Log Out</button>
     </section>
@@ -38,9 +44,55 @@ class SignUpSection extends React.Component {
 
     onSubmit(e) {
         e.preventDefault(); // Prevent page refresh.
+
+        let { email, password, type, name, currentAjax } = this.state;
+
+        if (currentAjax) return false; // Request in progress.
+
+        currentAjax = ajax({
+            type: 'POST',
+            url: '/api/user/create-user',
+            contentType: 'application/json',
+            data: JSON.stringify({ email, password, type, name }),
+            dataType: 'json',
+            success: this.onAjaxSuccess.bind(this),
+            error: this.onAjaxError.bind(this)
+        });
+
+        this.setState({ currentAjax });
+    }
+    onAjaxSuccess(data) {
+        // TODO: log(data) using a helper log function.
+        console.log(data);
+        let { user, error } = data,
+            e = "", // Error message.
+            callback = null;
+        if (error && error.code == 4) e = "Invalid input.";
+        if (error && error.code == 6) e = "Email already in use.";
+        else if (error || !user) e = "Sorry, something went wrong."
+        else {
+            let { setApp, history } = this.props;
+            callback = () => {
+                setApp({ user: new User(user) }); // Login!
+                history.push('/');
+            }
+        }
+        this.setState({ currentAjax: null, errorMessage: e }, callback);
+    }
+    onAjaxError(error) {
+        // TODO: log(error) using a helper log function.
+        console.log(error);
+        this.setState({
+            errorMessage: "Sorry, something went wrong.",
+            currentAjax: null
+        });
     }
 
+    // State setters.
     setType(type) {this.setState({ type });}
+    setEmail(e) {this.setState({ email: e.target.value })}
+    setName(e) {this.setState({ name: e.target.value })}
+    setPassword(e) {this.setState({ password: e.target.value })}
 
     render() {
 
@@ -48,30 +100,32 @@ class SignUpSection extends React.Component {
             = this.state;
 
         return (
-            <section className="block row" style={{maxWidth: "500px"}}>
-                <main>
-                    <form onSubmit={this.onSubmit.bind(this)}>
-                        <p className="errormessage">{errorMessage}</p>
-                        <input type="text" placeholder="Email" autoFocus={true} /><br />
-                        <input type="password" placeholder="Password" /><br />
-                        <input type="text" placeholder="Name" /><br />
-                        <Selector value={type} onSelect={this.setType.bind(this)}
-                            options={[
-                                {label: "Instructor", value: 1},
-                                {label: "Student", value: 2}
-                            ]} />
-                        <div className="buttons-right">
-                            <button type="submit">Sign Up</button>
-                        </div>
-                    </form>
-                </main>
-                <aside>
-                </aside>
-            </section>
+            <main className="block row" style={{maxWidth: "500px"}}>
+                <form onSubmit={this.onSubmit.bind(this)}>
+                    <p className="errormessage">{errorMessage}</p>
+                    <input type="text" placeholder="Email" autoFocus={true}
+                        value={email}
+                        onChange={this.setEmail.bind(this)} /><br />
+                    <input type="password" placeholder="Password"
+                        value={password}
+                        onChange={this.setPassword.bind(this)} /><br />
+                    <input type="text" placeholder="Name" value={name}
+                        onChange={this.setName.bind(this)} /><br />
+                    <label>I am</label>
+                    <Selector value={type} onSelect={this.setType.bind(this)}
+                        options={[
+                            {label: "an Instructor", value: 1},
+                            {label: "a Student", value: 2}
+                        ]} />
+                    <div className="buttons-right">
+                        <button type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </main>
         );
     }
 }
-
+const SignUpSectionWithRouter = withRouter(SignUpSection);
 
 /**
  * Props:

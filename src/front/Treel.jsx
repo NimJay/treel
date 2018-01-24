@@ -1,4 +1,5 @@
 import "babel-polyfill"; // Makes treel.js compatible with older browsers.
+import clone from 'clone';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -33,7 +34,9 @@ class Treel extends React.Component {
      * this.state.app which contains global data such as the logged in User.
      */
     setApp({ user }) {
-        if (user !== undefined) this.app.user = user;
+        let app = clone(this.state.app);
+        if (user !== undefined) app.user = user;
+        this.setState({ app });
     }
 
     render() {
