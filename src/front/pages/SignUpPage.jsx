@@ -68,7 +68,7 @@ class SignUpSection extends React.Component {
             e = "", // Error message.
             callback = null;
         if (error && error.code == 4) e = "Invalid input.";
-        if (error && error.code == 6) e = "Email already in use.";
+        else if (error && error.code == 6) e = "Email already in use.";
         else if (error || !user) e = "Sorry, something went wrong."
         else {
             let { setApp, history } = this.props;
