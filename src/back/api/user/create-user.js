@@ -21,6 +21,7 @@ function post(req, res) {
         return o.err('INVALID_INPUT', 'Invalid password.').out();
     if (![1, 2].includes(type)) // Can only create students/intructors.
         return o.err('INVALID_INPUT', 'Invalid type.').out();
+    email = email.toLowerCase();
 
     // Email in use?
     var User = mongoose.model('User');

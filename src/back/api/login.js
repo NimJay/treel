@@ -9,8 +9,11 @@ function post(req, res) {
 
     // POST variable.
     var { email, password } = req.body;
-    if (!email || !password)
+    if (email === undefined || password === undefined)
         return o.err('MISSING_POST').out();
+    if (!email.length || !password.length)
+        return o.err('INVALID_INPUT').out();
+    email = email.toLowerCase();
 
     // Retrieve the User.
     var User = mongoose.model('User');
