@@ -2,6 +2,7 @@ import { ajax } from 'jquery';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { User } from '../model/User.js';
+import LogoutButton from '../components/LogoutButton.jsx';
 
 
 const SignUpPage = ({ app, setApp }) => (
@@ -19,7 +20,7 @@ const SignUpPage = ({ app, setApp }) => (
 const LoggedInSection = ({ setApp }) => (
     <section className="block row" style={{maxWidth: "500px"}}>
         <p>You must log out to create a new account.</p>
-        <button onClick={setApp.bind({ user: null })}>Log Out</button>
+        <LogoutButton setApp={setApp} />
     </section>
 );
 

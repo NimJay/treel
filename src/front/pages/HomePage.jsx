@@ -2,21 +2,33 @@ import { ajax } from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../model/User.js';
+import LogoutButton from '../components/LogoutButton.jsx';
 
 
 const HomePage = ({ app, setApp }) => (
     <div id="page-home">
-        {app.isLoggedIn() ? null : <LoginSection setApp={setApp} />}
+        {app.isLoggedIn()
+            ? <LoggedInSection app={app} setApp={setApp} />
+            : <LoginSection setApp={setApp} />}
     </div>
 );
 
+const LoggedInSection = ({ app, setApp }) => (
+    <main className="block row">
+        <p>
+            You're currently logged in as
+            <span style={{fontWeight: "bold"}}> {app.user.name}</span>.
+        </p>
+        <LogoutButton setApp={setApp} />
+    </main>
+);
 
 const LoginSection = ({ setApp }) => (
     <div>
         <main className="block row">
             <LoginForm setApp={setApp} />
         </main>
-        <aside className="block row">
+        <aside className="block row" style={{'textAlign': 'center'}}>
             <p><Link to="/about">About</Link></p>
         </aside>
     </div>
