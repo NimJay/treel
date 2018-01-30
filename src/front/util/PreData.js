@@ -4,10 +4,13 @@
  * Some for pages, this data includes responses from API requests.
  */
 
+import { User } from '../model/User.js';
+
 const DATA = TREEL_PRE_DATA || {};
 
 function getUser() {
-    return DATA.user;
+    if (!DATA.user) return null;
+    return new User(DATA.user);
 }
 
 function getRequest(url) {
