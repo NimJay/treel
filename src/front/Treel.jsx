@@ -7,6 +7,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import { getUser } from './util/PreData.js';
 import { App } from './util/App.js';
 
 
@@ -25,7 +26,7 @@ class Treel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            app: new App({ user: null }) // TODO: Retrieve from "pre-data".
+            app: new App({ user: getUser() })
         };
     }
 

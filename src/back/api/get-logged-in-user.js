@@ -7,14 +7,18 @@ const Output = require('./util/Output.js').Output;
  * If not logged in, The user will be null.
  */
 function post(req, res) {
-    var o = new Output(res),
+    postOutput(req, res, o => o.out());
+}
+
+function postOutput(req, res, callback) {
+    let o = new Output(res),
         userId = req.session.userId;
-    if (!userId) return o.set('user', null).out();
+    if (!userId) return callback(o.set('user', null));
     var User = mongoose.model('User');
     User.findById(userId, function (err, user) {
-        if (err) return o.err('DATABASE').out();
-        return o.set('user', user).out();
+        if (err) return callback(o.err('DATABASE'));
+        return callback(o.set('user', user));
     });
 }
 
-module.exports = { post };
+module.exports = { post, postOutput };

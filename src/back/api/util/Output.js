@@ -11,6 +11,9 @@ class Output {
         this.o[k] = v;
         return this;
     }
+    get(k) {
+        return this.o[k];
+    }
     err(e, m) {
         if (!e) e = 'GENERIC';
         this.o.error = ERRORS[e];

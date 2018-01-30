@@ -1,4 +1,23 @@
-<!DOCTYPE html>
+const getLoggedInUser = require('./api/get-logged-in-user.js').postOutput;
+
+class HtmlCreator {
+
+    constructor(req, res, page, callback) {
+        getLoggedInUser(req, res, (o) => {
+            this.preData = { user: o.get('user') };
+            if (page == '/about') {
+                // TODO: Alter <meta> tags.
+            }
+            if (page == '/sign-up') {
+                // TODO: Alter <meta> tags.
+            }
+            if (page === null) res.status(404);
+            callback(this);
+        });
+    }
+
+    create() {
+        return `<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +34,11 @@
 		<!-- I M P O R T -->
 		<!-- Google Fonts: Muli --><link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 		<!-- treel.css --><link type="text/css" rel="stylesheet" href="/css/treel.css" />
+
+        <!-- PreData --->
+        <script>
+            var TREEL_PRE_DATA = ${JSON.stringify(this.preData)};
+        </script>
 	</head>
 
 	<body>
@@ -23,3 +47,9 @@
            <script src="/js/treel.js"></script>
 	</body>
 </html>
+`;
+    }
+}
+
+
+module.exports = { HtmlCreator };

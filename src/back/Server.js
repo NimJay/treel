@@ -6,6 +6,8 @@ const MongoStore = require('connect-mongo')(session);
 const api = require('./api/ApiRouter.js');
 const PORT = require('./Config').PORT;
 const { connect } = require('./Mongo.js');
+const HtmlCreator = require('./HtmlCreator.js').HtmlCreator;
+
 
 // Connect to Mongo, set up sessions, and run server.
 connect(function (db) {
@@ -22,17 +24,21 @@ connect(function (db) {
     app.use('/api', api); // Treel API.
 
     // Send index.html for all pages.
-    var sendIndex = (req, res) => {res.sendFile(path.resolve(__dirname + '/../public/index.html'));}
-    app.get('/about', sendIndex);
-    app.get('/sign-up', sendIndex);
+    app.get('/', sendHtml.bind(null, '/'));
+    app.get('/about', sendHtml.bind(null, '/about'));
+    app.get('/sign-up', sendHtml.bind(null, '/sign-up'));
 
-    // Everything else: index.html with 404.
-    app.use((req, res) => {
-        res.status(404);
-        res.sendFile(__dirname + '/../public/index.html');
-    });
+    // Everything else: 404.
+    app.use(sendHtml.bind(null, null));
 
     app.listen(PORT, function () {
         console.log('Serving Treel at: http://localhost:' + PORT);
     });
 });
+
+// Function used by /pages that spit out HTML.
+function sendHtml(page, req, res) {
+    new HtmlCreator(req, res, page, htmlCreator => {
+        res.send(htmlCreator.create());
+    });
+}
