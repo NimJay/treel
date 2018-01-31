@@ -19,6 +19,8 @@ function post(req, res) {
         return o.err('INVALID_INPUT', 'Invalid email.').out();
     if (password.length < 6 || password.length > 50)
         return o.err('INVALID_INPUT', 'Invalid password.').out();
+    if (name.length < 2 || name.length > 50)
+        return o.err('INVALID_INPUT', 'Invalid name.').out();
     if (![1, 2].includes(type)) // Can only create students/intructors.
         return o.err('INVALID_INPUT', 'Invalid type.').out();
     email = email.toLowerCase();
@@ -36,10 +38,11 @@ function post(req, res) {
             bcrypt.genSalt(SALT_ROUNDS, function(err, salt) {
                 bcrypt.hash(password, salt, function(err, passwordHash) {
 
-                    // Create user, and output. (TODO: login.)
+                    // Create user, login, and output.
                     newUser = new User({ email, passwordHash, name, type });
                     newUser.save(function (err, newUser) {
                         if (err) return o.err('DATABASE').out();
+                        req.session.userId = newUser._id; // Login.
                         return o.set('user', newUser).out();
                     });
 
