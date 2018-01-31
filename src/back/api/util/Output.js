@@ -57,6 +57,10 @@ const ERRORS = {
     'INVALID_COMBO': {
         code: 7,
         message: 'Invalid combination'
+    },
+    'NOT_LOGGED_IN': {
+        code: 8,
+        message: 'Must be logged in' 
     }
 };
 
