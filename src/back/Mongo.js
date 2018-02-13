@@ -54,4 +54,8 @@ function loadSchemas() {
     mongoose.model('Class', classSchema);
 }
 
+function prepopulate() {
+
+}
+
 module.exports = { connect };
