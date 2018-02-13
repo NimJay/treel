@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 const MongoClient = require('mongodb').MongoClient;
 
+
 var db = null;
+
 
 function connect(callback) {
     if (db) return callback(db);
@@ -15,6 +17,7 @@ function connect(callback) {
     });
     loadSchemas();
 }
+
 
 function loadSchemas() {
 
@@ -54,8 +57,5 @@ function loadSchemas() {
     mongoose.model('Class', classSchema);
 }
 
-function prepopulate() {
-
-}
 
 module.exports = { connect };
