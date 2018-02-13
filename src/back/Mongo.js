@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = require('mongoose').Schema;
 const MongoClient = require('mongodb').MongoClient;
 
 var db = null;
@@ -16,7 +17,9 @@ function connect(callback) {
 }
 
 function loadSchemas() {
-    var userSchema = mongoose.Schema({
+
+    // User
+    var userSchema = Schema({
         email: String,
         passwordHash: String,
         type: Number,
@@ -28,7 +31,27 @@ function loadSchemas() {
             }
         }
     });
-    var UserModel = mongoose.model('User', userSchema);
+    mongoose.model('User', userSchema);
+
+    // School
+    var schoolSchema = Schema({
+        name: String,
+        country: String,
+        creator: { type: Schema.Types.ObjectId, ref: 'User' }
+    });
+    mongoose.model('School', schoolSchema);
+
+    // Class
+    var classSchema = Schema({
+        courseCode: String,
+        courseName: String,
+        term: String,
+        isPrivate: Boolean,
+        school: { type: Schema.Types.ObjectId, ref: 'School' },
+        instructors: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        creator: { type: Schema.Types.ObjectId, ref: 'User' }
+    });
+    mongoose.model('Class', classSchema);
 }
 
 module.exports = { connect };
