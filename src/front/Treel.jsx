@@ -4,8 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter,
+    Link,
     Route,
-    Link
+    Switch
 } from 'react-router-dom';
 import { getUser } from './util/PreData.js';
 import { App } from './util/App.js';
@@ -54,12 +55,12 @@ class Treel extends React.Component {
 
         return (
             <BrowserRouter>
-                <div>
+                <Switch>
                     <Route exact path="/" render={renderPage.bind(null, HomePage)} />
                     <Route path="/about" render={renderPage.bind(null, AboutPage)} />
                     <Route path="/sign-up" render={renderPage.bind(null, SignUpPage)} />
                     <Route path="*" render={renderPage.bind(null, NotFoundPage)} />
-                </div>
+                </Switch>
             </BrowserRouter>
         );
     }
