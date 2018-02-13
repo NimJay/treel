@@ -14,6 +14,7 @@ import { App } from './util/App.js';
 // Import the various pages.
 import AboutPage from './pages/AboutPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
 
 
@@ -57,6 +58,7 @@ class Treel extends React.Component {
                     <Route exact path="/" render={renderPage.bind(null, HomePage)} />
                     <Route path="/about" render={renderPage.bind(null, AboutPage)} />
                     <Route path="/sign-up" render={renderPage.bind(null, SignUpPage)} />
+                    <Route path="*" render={renderPage.bind(null, NotFoundPage)} />
                 </div>
             </BrowserRouter>
         );
