@@ -3,7 +3,7 @@ const { Output } = require('../util/Output.js');
 
 /**
  * Update a user.
- * Note: This call does support the updating of emails and passwords.
+ * Note: This call does not support the updating of emails and passwords.
  */
 function post(req, res) {
 
