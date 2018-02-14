@@ -1,0 +1,55 @@
+.classecreationsection {
+    form {
+        margin-top: 20px;
+    }
+}
+
+
+.schoolselector {
+    input[type=text] {
+        margin-bottom: 5px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .schoolselector-school {
+        padding: 6px 0px;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        span {display: inline-block;}
+        span:nth-child(1) {
+            margin-right: 6px;
+        }
+        span:nth-child(2) {
+            font-size: 14px;
+        }
+        &:hover {
+            color: $color-green;
+        }
+    }
+    .schoolselector-cantfind {
+        span {color: $color-blue;cursor: pointer;}
+    }
+}
+
+
+.selectedschool {
+    margin: 0px 0px 20px 0px;
+    > div {
+        vertical-align: top;
+        display: inline-block;
+    }
+    > div:nth-child(1) {
+        width: 80%;
+        span {display: inline-block;}
+        span:nth-child(1) {
+            margin-right: 6px;
+        }
+        span:nth-child(2) {
+            font-size: 14px;
+        }
+    }
+    > div:nth-child(2) {
+        width: 20%;
+        text-align: right;
+    }
+}
