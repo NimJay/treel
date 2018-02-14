@@ -27,6 +27,7 @@ connect(function (db) {
     app.get('/', sendHtml.bind(null, '/'));
     app.get('/about', sendHtml.bind(null, '/about'));
     app.get('/sign-up', sendHtml.bind(null, '/sign-up'));
+    app.get('/class/new', sendHtml.bind(null, '/class/new'));
 
     // Everything else: 404.
     app.use(sendHtml.bind(null, null));
