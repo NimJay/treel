@@ -44,8 +44,8 @@ function loadSchemas() {
     });
     mongoose.model('School', schoolSchema);
 
-    // Class
-    var classSchema = Schema({
+    // Classe
+    var classeSchema = Schema({
         courseCode: String,
         courseName: String,
         term: String,
@@ -54,7 +54,7 @@ function loadSchemas() {
         instructors: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         creator: { type: Schema.Types.ObjectId, ref: 'User' }
     });
-    mongoose.model('Class', classSchema);
+    mongoose.model('Classe', classeSchema);
 }
 
 
