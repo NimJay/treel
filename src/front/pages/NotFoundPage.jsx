@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NotFoundPage = () => (
-    <div class="block row">
+    <div className="block row">
         <h1>Page Not Found</h1>
     </div>
 )
