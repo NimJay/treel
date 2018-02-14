@@ -24,8 +24,8 @@ class HtmlCreator {
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<!-- favicon.png -->
-		<link rel="shortcut icon" href="favicon.png" type="image/png">
-		<link rel="icon" href="favicon.png" type="image/png">
+		<link rel="shortcut icon" href="/favicon.png" type="image/png">
+		<link rel="icon" href="/favicon.png" type="image/png">
 
 		<title>Treel</title>
 		<meta name="description" content="A minimalistic learning management system.">
@@ -33,7 +33,8 @@ class HtmlCreator {
 
 		<!-- I M P O R T -->
 		<!-- Google Fonts: Muli --><link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-		<!-- treel.css --><link type="text/css" rel="stylesheet" href="/css/treel.css" />
+        <!-- Icomoon --> <link href="/css/icomoon/style.css" type="text/css" rel="stylesheet">
+        <!-- treel.css --><link type="text/css" rel="stylesheet" href="/css/treel.css" />
 
         <!-- PreData --->
         <script>
