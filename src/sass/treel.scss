@@ -31,7 +31,15 @@ h2 {
 p {
     margin: 20px 0px 10px 0px;
 }
-a {color: $color-blue;}
+a, button.button-mini {
+    display: inline;
+    font-size: 18px;
+    padding: 0px;
+    background: none;
+    color: $color-blue;
+    text-decoration: none;
+    box-shadow: none;
+}
 // a:visited {color: $color-purple;}
 
 button, a.button {
@@ -98,4 +106,5 @@ input[type=text], input[type=password] {
 
 @import 'grid';
 @import 'selector';
-@import 'classcreationsection';
+@import 'classecreationsection';
+@import 'instructordashboard';

@@ -1,0 +1,24 @@
+.instructordashboard {
+    .buttons-right {
+        margin: 0px 0px 20px 0px;
+    }
+    a.classe {
+        color: $color-black;
+        display: block;
+        padding: 6px 0px;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+        > div {display: inline-block;vertical-align: top;word-wrap: break-word;}
+        > div:nth-child(1) {width: 25%;}
+        > div:nth-child(2) {width: 50%;}
+        > div:nth-child(3) {width: 25%;text-align: right;}
+    }
+    a.classe:hover {
+        color: $color-green;
+    }
+    a.classe:last-child {
+        border-bottom: none;
+    }
+    button.button-mini {
+        margin-top: 20px;
+    }
+}
