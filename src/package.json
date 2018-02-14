@@ -6,7 +6,8 @@
   "scripts": {
     "nodemon": "nodemon --delay 1 --watch back back/Server.js",
     "webpack": "webpack",
-    "node-sass": "node-sass --watch --include-path css sass/treel.scss public/css/treel.css --output-style compact"
+    "node-sass": "node-sass --watch --include-path css sass/treel.scss public/css/treel.css --output-style compact",
+    "develop": "npm run webpack & npm run node-sass & npm run nodemon"
   },
   "repository": {
     "type": "git",
