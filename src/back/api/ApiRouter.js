@@ -8,10 +8,11 @@ router.use(function (req, res, next) {
     next();
 })
 
-router.post('/login', require('./login.js').post)
+router.post('/get-logged-in-user', require('./get-logged-in-user.js').post)
+    .post('/login', require('./login.js').post)
     .post('/logout', require('./logout.js').post)
+    .post('/school/get-schools', require('./school/get-schools.js').post)
     .post('/user/create-user', require('./user/create-user.js').post)
-    .post('/user/update-user', require('./user/update-user.js').post)
-    .post('/get-logged-in-user', require('./get-logged-in-user.js').post);
+    .post('/user/update-user', require('./user/update-user.js').post);
 
 module.exports = router;
