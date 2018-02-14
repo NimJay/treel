@@ -8,7 +8,9 @@ router.use(function (req, res, next) {
     next();
 })
 
-router.post('/get-logged-in-user', require('./get-logged-in-user.js').post)
+router
+    .post('/class/create-class', require('./classe/create-classe.js').post)
+    .post('/get-logged-in-user', require('./get-logged-in-user.js').post)
     .post('/login', require('./login.js').post)
     .post('/logout', require('./logout.js').post)
     .post('/school/get-schools', require('./school/get-schools.js').post)
