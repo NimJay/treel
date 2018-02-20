@@ -65,7 +65,7 @@ class InstructorDashboard extends React.Component {
                 school={schools.filter(s => s._id == c.school).push(null)[0]} />
         );
 
-        let inactiveDivs = classes.filter(c => c.isActive).map(c =>
+        let inactiveDivs = classes.filter(c => !c.isActive).map(c =>
             <ClasseDiv classe={c} key={c._id}
                 school={schools.filter(s => s._id == c.school).push(null)[0]} />
         );
