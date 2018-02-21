@@ -56,6 +56,24 @@ function loadSchemas() {
         creator: { type: Schema.Types.ObjectId, ref: 'User' }
     });
     mongoose.model('Classe', classeSchema);
+
+    // Content
+    var contentSchema = Schema({
+        type: String
+    });
+
+    // Section
+    var sectionSchema = Schema({
+        name: String,
+        contents: [contentSchema]
+    });
+
+    // Sections
+    var sectionsSchema = Schema({
+        sections: [sectionSchema],
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe' }
+    });
+    mongoose.model('Sections', sectionsSchema);
 }
 
 
