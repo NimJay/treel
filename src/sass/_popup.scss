@@ -1,0 +1,28 @@
+/**
+ * Styles for <Popup>.
+ */
+.popup-wall {
+    z-index: 100;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    overflow: scroll;
+    .popup {
+        div.popup-close {
+            padding: 16px 16px 0px 16px;
+            text-align: right;
+        }
+        margin: 50px auto;
+        width: 90%;
+        max-width: 750px;
+        background-color: white;
+        box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.2);
+        > .block.row {
+            padding-top: 0px;
+            h1, h2, h3 {margin-top: 0px;}
+        }
+    }
+}
