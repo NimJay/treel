@@ -58,14 +58,23 @@ function post(req, res) {
 
 
 function createClasse(o, courseCode, courseName, term, school, creator) {
-    // Create new Class.
     var Classe = mongoose.model('Classe');
     var instructors = [creator];
     newClasse = new Classe(
         { courseCode, courseName, term, school, creator, instructors });
     newClasse.save(function (err, classe) {
         if (err) return o.err('DATABASE').out();
-        return o.set('classe', classe).out();
+        return createSection(o, classe);
+    });
+}
+
+
+function createSection(o, classe) {
+    var Sections = mongoose.model('Sections');
+    newSections = new Sections({ classe: classe._id, sections: [] });
+    newSections.save(function (err, sections) {
+        if (err) return o.err('DATABASE').out();
+        return o.set('classe', classe).set('sections', sections).out();
     });
 }
 
