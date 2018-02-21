@@ -9,9 +9,9 @@ router.use(function (req, res, next) {
 })
 
 router
-    .post('/class/create-classe', require('./classe/create-classe.js').post)
+    .post('/classe/create-classe', require('./classe/create-classe.js').post)
     .post('/classe/get-classe', require('./classe/get-classe.js').post)
-    .post('/class/get-dashboard', require('./classe/get-dashboard.js').post)
+    .post('/classe/get-dashboard', require('./classe/get-dashboard.js').post)
     .post('/get-logged-in-user', require('./get-logged-in-user.js').post)
     .post('/login', require('./login.js').post)
     .post('/logout', require('./logout.js').post)

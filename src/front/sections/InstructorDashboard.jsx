@@ -28,7 +28,7 @@ class InstructorDashboard extends React.Component {
     getDashboard() {
         return ajax({
             'type': 'POST',
-            'url': '/api/class/get-dashboard',
+            'url': '/api/classe/get-dashboard',
             'dataType': 'json',
             'success': this.onAjaxSuccess.bind(this),
             'error': this.onAjaxError.bind(this)

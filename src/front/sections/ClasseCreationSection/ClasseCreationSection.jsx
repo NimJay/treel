@@ -43,7 +43,7 @@ class ClasseCreationSectionNoRouter extends React.Component {
         if (currentAjax) return false;
         currentAjax = ajax({
             type: 'POST',
-            url: '/api/class/create-classe',
+            url: '/api/classe/create-classe',
             contentType: 'application/json',
             data: JSON.stringify({ courseCode, courseName, term, school }),
             dataType: 'json',
