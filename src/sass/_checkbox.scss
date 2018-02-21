@@ -1,0 +1,33 @@
+/**
+ * Styles for <CheckBox>.
+ */
+.checkbox {
+    display: inline-block;
+    cursor: pointer;
+    > span:nth-child(1) {
+        display: inline-block;
+        margin-right: 10px;
+        width: 27px;
+        height: 27px;
+        border: 2px solid $color-black;
+        border-radius: 3px;
+        vertical-align: top;
+        text-align: center;
+        span.icon {
+            color: white;
+        }
+    }
+    > span:nth-child(2) {
+        display: inline-block;
+        padding-top: 1px;
+        vertical-align: top;
+    }
+    input {display: none;}
+    &.checked {
+        > span:nth-child(1) {
+            background-color: $color-green;
+            border: 2px solid $color-green;
+            box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
