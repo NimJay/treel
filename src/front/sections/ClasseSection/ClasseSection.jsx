@@ -5,7 +5,7 @@ import ClasseEditor from './ClasseEditor.jsx';
 
 /**
  * <ClasseSection>
- * Props: classe, onUpdate(classe)
+ * Props: isEditable, classe, onUpdate(classe)
  */
 class ClasseSection extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class ClasseSection extends React.Component {
 
     render() {
 
-        let { classe, onUpdate } = this.props,
+        let { isEditable, classe, onUpdate } = this.props,
             { showEditor } = this.state;
 
         return (
@@ -34,8 +34,8 @@ class ClasseSection extends React.Component {
                         </h1>
                     </div>
                     <div>
-                        <span className="icon icon-edit"
-                            onClick={this.showEditor.bind(this)}></span>
+                        {isEditable && <span className="icon icon-edit"
+                            onClick={this.showEditor.bind(this)}></span>}
                     </div>
                     <div>{classe.term} &mdash; {classe.school.name}</div>
                     <InstructorsDiv instructors={classe.instructors} />

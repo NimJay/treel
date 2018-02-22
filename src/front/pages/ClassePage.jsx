@@ -55,7 +55,8 @@ class ClassePage extends React.Component {
 
     render() {
 
-        let { isMounted, currentAjax, invalid, error, classe,
+        let { app } = this.props,
+            { isMounted, currentAjax, invalid, error, classe,
             sections } = this.state;
 
         if (isMounted) return false;
@@ -63,9 +64,14 @@ class ClassePage extends React.Component {
         if (invalid) return <InvalidSection />;
         if (error || !classe || !sections) return <ErrorSection />;
 
+        // Only editable to creator and instructors.
+        let isEditable = app.isLoggedIn() &&
+            (classe.instructors.map(i => i._id) + [classe.creator._id])
+                .includes(app.user._id);
+
         return (
             <div>
-                <ClasseSection classe={classe}
+                <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
             </div>
         );
