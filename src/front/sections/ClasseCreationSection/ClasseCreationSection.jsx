@@ -60,7 +60,7 @@ class ClasseCreationSectionNoRouter extends React.Component {
         if (error && error.code == 4) errorMessage = "Invalid input.";
         else if (error || !classe) errorMessage = "Something went wrong.";
         else this.props.history.push('/class/' + classe._id);
-        this.setState({ currentAjax });
+        this.setState({ currentAjax, errorMessage });
     }
     onAjaxError(error) {
         log(error);
