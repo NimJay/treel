@@ -2,6 +2,7 @@ import { ajax } from 'jquery';
 import React from 'react';
 import { log } from '../util/Global.js';
 import { Classe } from '../model/Classe.js';
+import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
 
 
 class ClassePage extends React.Component {
@@ -50,6 +51,7 @@ class ClassePage extends React.Component {
         this.setState({ error: true, currentAjax: null });
     }
 
+    setClasse(classe) {this.setState({ classe });}
 
     render() {
 
@@ -63,7 +65,8 @@ class ClassePage extends React.Component {
 
         return (
             <div>
-
+                <ClasseSection classe={classe}
+                    onUpdate={this.setClasse.bind(this)} />
             </div>
         );
     }
