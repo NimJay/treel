@@ -18,6 +18,9 @@ function postOutput(req, res, cb) {
         if (classeId === undefined)
             return cb(o.err('MISSING_POST'));
 
+        if (!mongoose.Types.ObjectId.isValid(classeId))
+            return cb(o.err('INVALID_INPUT'));
+
         var Classe = mongoose.model('Classe');
         Classe
             .findById(classeId)
