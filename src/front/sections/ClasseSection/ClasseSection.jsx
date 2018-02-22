@@ -17,7 +17,10 @@ class ClasseSection extends React.Component {
 
     showEditor() {this.setState({ showEditor: true });}
     hideEditor() {this.setState({ showEditor: false });}
-
+    onUpdate(classe) {
+        this.setState({ showEditor: false },
+            this.props.onUpdate.bind(null, classe));
+    }
 
     render() {
 
@@ -42,7 +45,8 @@ class ClasseSection extends React.Component {
                 </div>
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
-                        <ClasseEditor classe={classe} onUpdate={onUpdate} />
+                        <ClasseEditor classe={classe}
+                            onUpdate={this.onUpdate.bind(this)} />
                     </Popup>}
             </header>
         );

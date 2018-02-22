@@ -49,7 +49,7 @@ function loadSchemas() {
         courseCode: String,
         courseName: String,
         term: String,
-        isPrivate: Boolean,
+        isPrivate: { type: Boolean, default: false },
         isActive: { type: Boolean, default: true },
         school: { type: Schema.Types.ObjectId, ref: 'School' },
         instructors: [{ type: Schema.Types.ObjectId, ref: 'User' }],
