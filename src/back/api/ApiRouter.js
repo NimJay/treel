@@ -17,6 +17,7 @@ router
     .post('/login', require('./login.js').post)
     .post('/logout', require('./logout.js').post)
     .post('/school/get-schools', require('./school/get-schools.js').post)
+    .post('/section/create-section', require('./section/create-section.js').post)
     .post('/user/create-user', require('./user/create-user.js').post)
     .post('/user/update-user', require('./user/update-user.js').post);
 
