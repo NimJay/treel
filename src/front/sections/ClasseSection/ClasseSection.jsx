@@ -29,10 +29,11 @@ class ClasseSection extends React.Component {
 
         return (
             <header className="block classesection">
+                {!classe.isActive && !isEditable && <InactiveDiv />}
                 <div className="row">
                     <div>
                         <h1>
-                            {classe.courseCode}
+                            {classe.courseCode + ' '}
                             <span>{classe.courseName}</span>
                         </h1>
                     </div>
@@ -43,6 +44,7 @@ class ClasseSection extends React.Component {
                     <div>{classe.term} &mdash; {classe.school.name}</div>
                     <InstructorsDiv instructors={classe.instructors} />
                 </div>
+                {!classe.isActive && isEditable && <InactiveDiv />}
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
                         <ClasseEditor classe={classe}
@@ -53,6 +55,12 @@ class ClasseSection extends React.Component {
     }
 }
 
+
+const InactiveDiv = () => (
+    <aside className="row">
+        This page is <span className="color-red">inactive</span>.
+    </aside>
+);
 
 const InstructorsDiv = ({ instructors }) => (
     instructors.length == 0 ? null :
