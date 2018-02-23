@@ -33,9 +33,10 @@ function post(req, res) {
             var s = { name };
             if (isAtTop) sections.sections.unshift(s);
             else sections.sections.push(s);
-            sections.save(function (err) {
+            sections.save(function (err, ss) {
                 if (err) return o.err('DATABASE').out();
-                return o.set('section', s).out();
+                var i = isAtTop ? 0 : ss.sections.length - 1;
+                return o.set('section', ss.sections[i]).out();
             });
         });
     });
