@@ -7,8 +7,8 @@ import SectionMover from './SectionMover.jsx';
 /**
  * <SectionSection>
  * Props:
- *    section, onUpdate(section), onDelete(), onMove(), isEditable, isFirst
- *    isLast
+ *    classeId, section, onUpdate(section), onDelete(), onMove(), isEditable,
+ *    isFirst, isLast
  */
 class SectionSection extends React.Component {
 
@@ -30,11 +30,13 @@ class SectionSection extends React.Component {
 
     render() {
 
-        let { section, onMove, isEditable, isFirst, isLast } = this.props,
+        let { classeId, section, onMove, isEditable, isFirst, isLast } =
+            this.props,
             { showEditor } = this.state;
 
         return (
-            <section className="sectionsection block">
+            <section className={"sectionsection block" +
+                (section.isActive ? '' : ' deleted')}>
                 <div className="row">
                     <div><h2>{section.name}</h2></div>
                     {isEditable ?
@@ -47,10 +49,12 @@ class SectionSection extends React.Component {
                                 onClick={this.showEditor.bind(this)}></span>
                         </div>
                         : <div></div>}
+                    {section.isDeleted && <p>This section has been{' '}
+                        <span className="color-red">deleted</span>.</p>}
                 </div>
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
-                        <SectionEditor section={section}
+                        <SectionEditor section={section} classeId={classeId}
                             onUpdate={this.onUpdate.bind(this)} />
                     </Popup>}
             </section>

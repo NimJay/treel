@@ -17,4 +17,8 @@
         }
         h2 {margin-top: 0px;}
     }
+
+    &.deleted {
+        h2 {opacity: 0.5;}
+    }
 }

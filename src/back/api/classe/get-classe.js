@@ -33,6 +33,9 @@ function postOutput(req, res, cb) {
                 // TODO: Handle Classe privacy for logged-in Users.
                 if (classe.isPrivate && !user)
                     return cb(o.err('INVALID_INPUT'));
+                var isCreator = user && classe.creator.equals(user._id);
+                var isInstructor = user &&
+                    classe.instructors.some(i => i.equals(user._id));
 
                 o.set('classe', classe);
                 return findSections(o, cb, classe);
@@ -48,6 +51,8 @@ function findSections(o, cb, classe) {
         function (err, sections) {
             if (err) return cb(o.err('DATABASE'));
             if (!sections) return cb(o.err());
+            // Remove deleted sections.
+            sections.sections = sections.sections.filter(s => !s.isDeleted);
             return cb(o.set('sections', sections));
         }
     );

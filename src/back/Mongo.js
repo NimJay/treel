@@ -65,7 +65,7 @@ function loadSchemas() {
     // Section
     var sectionSchema = Schema({
         name: String,
-        isActive: { type: Boolean, default: true },
+        isDeleted: { type: Boolean, default: false },
         contents: [contentSchema]
     });
 

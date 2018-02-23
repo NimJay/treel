@@ -90,7 +90,8 @@ class ClassePage extends React.Component {
         let sectionSections = sections.sections.map((s, i) =>
             <SectionSection section={s} key={i} isEditable={isEditable}
                 isFirst={i == 0} isLast={i == sections.sections.length - 1}
-                onUpdate={this.onSectionUpdate.bind(this, i)} />
+                onUpdate={this.onSectionUpdate.bind(this, i)}
+                classeId={classe._id} />
         );
 
         return (

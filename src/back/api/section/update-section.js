@@ -11,13 +11,15 @@ function post(req, res) {
         if (!user) return o.err('NOT_LOGGED_IN').out();
 
         // Gather input.
-        var { classeId, sectionId, name, isActive } = req.body;
-        if ([classeId, sectionId, name, isActive].some(a => a === undefined))
+        var { classeId, sectionId, name, isDeleted } = req.body;
+        if ([classeId, sectionId, name, isDeleted].some(a => a === undefined))
             return o.err('MISSING_POST').out();
 
         // Validate input.
         if (typeof(name) !== 'string' || name.lenth > 50)
             return o.err('INVALID_INPUT', 'Invalid name.').out();
+        if (typeof(isDeleted) !== 'boolean')
+            return o.err('INVALID_INPUT', 'Invalid isDeleted.').out();
         if (!mongoose.Types.ObjectId.isValid(classeId))
             return cb(o.err('INVALID_INPUT', 'Invalid classeId.'));
         if (!mongoose.Types.ObjectId.isValid(sectionId))
@@ -35,7 +37,7 @@ function post(req, res) {
 
             // Update and save.
             ss.sections[i].name = name;
-            ss.sections[i].isActive = isActive;
+            ss.sections[i].isDeleted = isDeleted;
             ss.save(function (err, ss) {
                 if (err) return o.err('DATABASE').out();
                 var s = ss.sections.find(s => s._id.equals(sectionId));
