@@ -1,8 +1,9 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import { log } from '../util/Global.js';
+import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
+import { log } from '../util/Global.js';
 
 
 class ClassePage extends React.Component {
@@ -55,14 +56,15 @@ class ClassePage extends React.Component {
 
     render() {
 
-        let { app } = this.props,
+        let { app, setApp } = this.props,
             { isMounted, currentAjax, invalid, error, classe,
             sections } = this.state;
 
         if (isMounted) return false;
-        if (currentAjax) return <LoadingSection />;
-        if (invalid) return <InvalidSection />;
-        if (error || !classe || !sections) return <ErrorSection />;
+        if (currentAjax) return <LoadingSection app={app} setApp={setApp} />;
+        if (invalid) return <InvalidSection app={app} setApp={setApp} />;
+        if (error || !classe || !sections)
+            return <ErrorSection app={app} setApp={setApp} />;
 
         // Only editable to creator and instructors.
         let isEditable = app.isLoggedIn() &&
@@ -71,6 +73,7 @@ class ClassePage extends React.Component {
 
         return (
             <div>
+                <Nav app={app} setApp={setApp} />
                 <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
             </div>
@@ -78,9 +81,14 @@ class ClassePage extends React.Component {
     }
 }
 
-const Section = ({ p }) => (<section className="block row"><p>{p}</p></section>);
-const LoadingSection = () => <Section p="Loading..." />;
-const InvalidSection = () => <Section p="This page is either non-existent or private." />;
-const ErrorSection = () => <Section p="Sorry, something went wrong." />;
+const Section = ({ p, app, setApp }) => (
+    <div>
+        <Nav app={app} setApp={setApp} />
+        <main className="block row"><p>{p}</p></main>
+    </div>
+);
+const LoadingSection = (props) => <Section p="Loading..." {...props} />;
+const InvalidSection = (props) => <Section p="This page is either non-existent or private." {...props} />;
+const ErrorSection = (props) => <Section p="Sorry, something went wrong." {...props} />;
 
 export default ClassePage;

@@ -1,9 +1,10 @@
 import { ajax } from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { log } from '../util/Global.js';
+import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import { School } from '../model/School.js';
+import { log } from '../util/Global.js';
 
 
 class InstructorDashboard extends React.Component {
@@ -54,8 +55,9 @@ class InstructorDashboard extends React.Component {
     showInActive() {this.setState({ showInActive: true });}
 
     render () {
-        let { isMounted, currentAjax, error, classes, schools,
-            showInActive } = this.state;
+        let { app, setApp } = this.props,
+            { isMounted, currentAjax, error, classes, schools,
+            showInActive, } = this.state;
 
         if (!isMounted) return null;
         if (currentAjax) return <LoadingSection />;
@@ -71,19 +73,22 @@ class InstructorDashboard extends React.Component {
         );
 
         return (
-            <main className="instructordashboard block row">
-                <div className="buttons-right">
+            <div>
+                <Nav app={app} setApp={setApp} />
+                <main className="instructordashboard block row">
+                    <div className="buttons-right">
                     <Link to="/class/new" className="button">New Class</Link>
-                </div>
-                <div>{activeDivs}</div>
-                {inactiveDivs.length > 0 && !showInActive &&
-                    <button className="button-mini"
+                    </div>
+                    <div>{activeDivs}</div>
+                    {inactiveDivs.length > 0 && !showInActive &&
+                        <button className="button-mini"
                         onClick={this.showInActive.bind(this)}>
                         Show Inactive Classes</button>}
-                {showInActive && <h2>Inactive Classes</h2>}
-                {showInActive && inactiveDivs}
-                {error && <p>Sorry, something went wrong.</p>}
-            </main>
+                        {showInActive && <h2>Inactive Classes</h2>}
+                        {showInActive && inactiveDivs}
+                        {error && <p>Sorry, something went wrong.</p>}
+                </main>
+            </div>
         );
     }
 }

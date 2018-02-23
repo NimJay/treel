@@ -98,6 +98,8 @@ input[type=text], input[type=password] {
     cursor: pointer;
 }
 
+.color-red {color: $color-red;}
+
 #page-home {
 }
 #page-about {
@@ -106,6 +108,7 @@ input[type=text], input[type=password] {
 
 @import 'grid';
 @import 'checkbox';
+@import 'nav';
 @import 'popup';
 @import 'selector';
 @import 'classecreationsection';
