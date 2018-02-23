@@ -1,0 +1,20 @@
+.sectionsection {
+    padding-top: 30px;
+    > .row {
+        > div:nth-child(1), > div:nth-child(2) {
+            display: inline-block;
+            vertical-align: top;
+        }
+        > div:nth-child(1) {
+            width: 75%;
+        }
+        > div:nth-child(2) {
+            width: 25%;
+            text-align: right;
+            > .icon {margin-right: 15px;}
+            > .icon:last-child {margin-right: 0px;}
+            > .icon.disabled {opacity: 0.2;}
+        }
+        h2 {margin-top: 0px;}
+    }
+}

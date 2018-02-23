@@ -107,10 +107,6 @@ input[type=text], input[type=password] {
     margin-top: 80px;
 }
 
-.sectioncreationsection {
-    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-}
-
 @import 'grid';
 @import 'checkbox';
 @import 'nav';
@@ -119,3 +115,4 @@ input[type=text], input[type=password] {
 @import 'classecreationsection';
 @import 'classesection';
 @import 'instructordashboard';
+@import 'sectionsection';

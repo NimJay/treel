@@ -4,6 +4,7 @@ import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
 import SectionCreationSection from '../sections/SectionCreationSection.jsx';
+import SectionSection from '../sections/SectionSection/SectionSection.jsx';
 import { log } from '../util/Global.js';
 
 
@@ -63,6 +64,13 @@ class ClassePage extends React.Component {
         this.setState({ sections });
     }
 
+    onSectionUpdate(i, updated) {
+        let { sections } = this.state;
+        // Warning: May be buggy; consider cloning.
+        sections.sections[i] = updated;
+        this.setState({ sections });
+    }
+
     render() {
 
         let { app, setApp } = this.props,
@@ -79,6 +87,11 @@ class ClassePage extends React.Component {
         let isEditable = app.isLoggedIn() &&
             (classe.instructors.map(i => i._id) + [classe.creator._id])
                 .includes(app.user._id);
+        let sectionSections = sections.sections.map((s, i) =>
+            <SectionSection section={s} key={i} isEditable={isEditable}
+                isFirst={i == 0} isLast={i == sections.sections.length - 1}
+                onUpdate={this.onSectionUpdate.bind(this, i)} />
+        );
 
         return (
             <div>
@@ -88,10 +101,11 @@ class ClassePage extends React.Component {
                 {isEditable &&
                     <SectionCreationSection classeId={classe._id} isAtTop={true}
                         onCreation={this.onSectionCreation.bind(this, true)} />}
+                {sectionSections}
                 {isEditable && sections.sections.length > 0 &&
                     <SectionCreationSection classeId={classe._id}
                         isAtTop={false}
-                        onCreation={this.onSectionCreation.bind(this, true)} />}
+                        onCreation={this.onSectionCreation.bind(this, false)} />}
             </div>
         );
     }
