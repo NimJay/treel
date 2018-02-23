@@ -36,7 +36,7 @@ class SectionSection extends React.Component {
 
         return (
             <section className={"sectionsection block" +
-                (section.isActive ? '' : ' deleted')}>
+                (section.isDeleted ? ' deleted' : '')}>
                 <div className="row">
                     <div><h2>{section.name}</h2></div>
                     {isEditable ?
@@ -49,8 +49,7 @@ class SectionSection extends React.Component {
                                 onClick={this.showEditor.bind(this)}></span>
                         </div>
                         : <div></div>}
-                    {section.isDeleted && <p>This section has been{' '}
-                        <span className="color-red">deleted</span>.</p>}
+                    {section.isDeleted && <DeletedWarning/>}
                 </div>
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
@@ -62,5 +61,12 @@ class SectionSection extends React.Component {
     }
 }
 
+const DeletedWarning = () => (
+    <p>
+        This section will be
+        <span className="color-red"> deleted </span>
+        the next time you load this page.
+    </p>
+);
 
 export default SectionSection;
