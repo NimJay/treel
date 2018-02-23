@@ -99,11 +99,16 @@ input[type=text], input[type=password] {
 }
 
 .color-red {color: $color-red;}
+.align-right {text-align: right;}
 
 #page-home {
 }
 #page-about {
     margin-top: 80px;
+}
+
+.sectioncreationsection {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
 
 @import 'grid';

@@ -3,6 +3,7 @@ import React from 'react';
 import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
+import SectionCreationSection from '../sections/SectionCreationSection.jsx';
 import { log } from '../util/Global.js';
 
 
@@ -54,6 +55,14 @@ class ClassePage extends React.Component {
 
     setClasse(classe) {this.setState({ classe });}
 
+    onSectionCreation(isAtTop, section) {
+        let { sections } = this.state;
+        // Warning: May be buggy; consider cloning.
+        if (isAtTop) sections.sections.unshift(section);
+        else sections.sections.push(section);
+        this.setState({ sections });
+    }
+
     render() {
 
         let { app, setApp } = this.props,
@@ -76,6 +85,13 @@ class ClassePage extends React.Component {
                 <Nav app={app} setApp={setApp} />
                 <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
+                {isEditable &&
+                    <SectionCreationSection classeId={classe._id} isAtTop={true}
+                        onCreation={this.onSectionCreation.bind(this, true)} />}
+                {isEditable && sections.sections.length > 0 &&
+                    <SectionCreationSection classeId={classe._id}
+                        isAtTop={false}
+                        onCreation={this.onSectionCreation.bind(this, true)} />}
             </div>
         );
     }
