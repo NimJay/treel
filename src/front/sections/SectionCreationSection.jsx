@@ -42,17 +42,17 @@ class SectionCreationSection extends React.Component {
     onAjaxSucces(data) {
         log(data);
         let { error, section } = data,
-            callback = null,
+            cb = null,
             showCreator = true,
             errorMessage = "",
             currentAjax = null;
         if (error && error.code == 4) errorMessage = "Invalid input.";
         else if (error || !section) errorMessage = "Something went wrong.";
         else {
-            callback = this.props.onCreation(null, section);
+            cb = this.props.onCreation.bind(null, section);
             showCreator = false;
         }
-        this.setState({ currentAjax, errorMessage, showCreator }, callback);
+        this.setState({ currentAjax, errorMessage, showCreator }, cb);
     }
     onAjaxError(error) {
         log(error);
