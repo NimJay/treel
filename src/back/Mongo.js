@@ -65,6 +65,7 @@ function loadSchemas() {
     // Section
     var sectionSchema = Schema({
         name: String,
+        isActive: { type: Boolean, default: true },
         contents: [contentSchema]
     });
 
