@@ -42,9 +42,11 @@ class SectionSection extends React.Component {
                     {isEditable ?
                         <div>
                             <SectionMover isMoveUp={false} onMove={onMove}
-                                disabled={isLast} />
+                                disabled={isLast} classeId={classeId}
+                                sectionId={section._id} />
                             <SectionMover isMoveUp={true} onMove={onMove}
-                                disabled={isFirst} />
+                                disabled={isFirst} classeId={classeId}
+                                sectionId={section._id} />
                             <span className="icon icon-edit"
                                 onClick={this.showEditor.bind(this)}></span>
                         </div>

@@ -71,6 +71,20 @@ class ClassePage extends React.Component {
         this.setState({ sections });
     }
 
+    onSectionMove(i, isMoveUp) {
+        let ss = this.state.sections;
+        // Warning: May be buggy; consider cloning.
+        var temp = ss.sections[i];
+        if (isMoveUp) { // Move up.
+            ss.sections[i] = ss.sections[i - 1];
+            ss.sections[i - 1] = temp;
+        } else { // Move down.
+            ss.sections[i] = ss.sections[i + 1];
+            ss.sections[i + 1] = temp;
+        }
+        this.setState({ sections: ss });
+    }
+
     render() {
 
         let { app, setApp } = this.props,
@@ -91,6 +105,7 @@ class ClassePage extends React.Component {
             <SectionSection section={s} key={i} isEditable={isEditable}
                 isFirst={i == 0} isLast={i == sections.sections.length - 1}
                 onUpdate={this.onSectionUpdate.bind(this, i)}
+                onMove={this.onSectionMove.bind(this, i)}
                 classeId={classe._id} />
         );
 
