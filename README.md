@@ -40,7 +40,7 @@ To run Treel on your machine:
 
 1. Install [Node](https://nodejs.org) (with npm) and [MongoDB](https://www.mongodb.com/).
 2. `git clone https://github.com/NimJay/treel.git`
-3. `cd src/`
+3. `cd treel/src/`
 4. `npm install` (This may take a while.)
 5. Configure `back/Config.js` as needed.
 6. `node back/LoadData.js` to load initial MongoDB data.
