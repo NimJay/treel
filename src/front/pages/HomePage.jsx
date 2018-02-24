@@ -11,6 +11,11 @@ const HomePage = ({ app, setApp }) => {
         return <LoginPage app={app} setApp={setApp} />;
     if (app.user.type == 1)
         return <InstructorDashboard app={app} setApp={setApp} />;
+    return (
+        <p className="block row">
+            The StudentDashboard is to be implemented in March.<br/>
+            <LogoutButton app={app} setApp={setApp} isMini={true} />
+        </p>);
 };
 
 
