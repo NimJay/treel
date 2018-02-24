@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 const MongoClient = require('mongodb').MongoClient;
+const MONGO_URI = require('./Config').MONGO_URI;
 
 
 var db = null;
@@ -8,7 +9,7 @@ var db = null;
 
 function connect(callback) {
     if (db) return callback(db);
-    mongoose.connect('mongodb://localhost:27017/treel');
+    mongoose.connect(MONGO_URI);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'Mongoose connection.'));
     db.once('open', function() {
