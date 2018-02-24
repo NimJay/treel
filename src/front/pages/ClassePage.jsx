@@ -72,15 +72,25 @@ class ClassePage extends React.Component {
     }
 
     onSectionMove(i, isMoveUp) {
-        let ss = this.state.sections;
+        let ss = this.state.sections,
+            swapIsDeleted = true;
         // Warning: May be buggy; consider cloning.
-        var temp = ss.sections[i];
-        if (isMoveUp) { // Move up.
-            ss.sections[i] = ss.sections[i - 1];
-            ss.sections[i - 1] = temp;
-        } else { // Move down.
-            ss.sections[i] = ss.sections[i + 1];
-            ss.sections[i + 1] = temp;
+        if (isMoveUp) { // Move up until we're above a non-deleted Section.
+            while (i > 0 && swapIsDeleted) {
+                swapIsDeleted = ss.sections[i - 1].isDeleted;
+                var temp = ss.sections[i];
+                ss.sections[i] = ss.sections[i - 1];
+                ss.sections[i - 1] = temp;
+                i--;
+            }
+        } else { // Move down until we're below a non-deleted Section.
+            while (i < ss.sections.length - 1 && swapIsDeleted) {
+                swapIsDeleted = ss.sections[i + 1].isDeleted;
+                var temp = ss.sections[i];
+                ss.sections[i] = ss.sections[i + 1];
+                ss.sections[i + 1] = temp;
+                i++;
+            }
         }
         this.setState({ sections: ss });
     }
