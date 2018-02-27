@@ -121,7 +121,7 @@ class ClassePage extends React.Component {
 
         return (
             <div>
-                <Nav app={app} setApp={setApp} />
+                {app.isLoggedIn() && <Nav app={app} setApp={setApp} />}
                 <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
                 {isEditable &&
