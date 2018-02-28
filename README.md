@@ -1,7 +1,15 @@
+![Treel Logo](https://github.com/NimJay/treel/blob/develop/src/public/favicon.png)
+
 Treel
 ===
 
-Treel is a minimalistic learning management system.
+Treel is a minimalistic learning management system that allows instructors to distribute class content to students.
+
+
+
+## Description
+
+A user of Treel is either an **Instructor** or a **Student**. Instructors create **Class** pages which Students can **Follow**. Each Class may have multiple Instructors who can add/edit Class **Content** (e.g., assignment handouts). Class pages can be made **public** (allowing anyone to Follow), or **private** (allowing only a specified list of Students to Follow).
 
 
 
