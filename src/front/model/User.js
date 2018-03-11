@@ -8,6 +8,8 @@ class User {
         this.name = name;
         this.type = type;
     }
+    isInstructor() {return this.type == 1;}
+    isStudent() {return this.type == 2;}
 }
 
 
