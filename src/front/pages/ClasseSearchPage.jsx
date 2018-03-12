@@ -62,7 +62,8 @@ class ClasseSearchPage extends React.Component {
 
         return (
             <div>
-                <Nav app={app} setApp={setApp} />
+                {app.isLoggedIn() ? <Nav app={app} setApp={setApp} /> :
+                    <nav className="block row"><Link to="/">Home</Link></nav>}
                 <main className="classesearchsection block row">
                     <div>
                         <h1>Find a Class</h1>
