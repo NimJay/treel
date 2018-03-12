@@ -18,6 +18,9 @@
             font-size: 15px;
             line-height: 1.4em;
         }
+        &:hover {
+            > div:nth-child(1), > div:nth-child(2) {color: $color-green;}
+        }
         &:nth-child(2) {margin-top: 20px;}
         &:last-child {border-bottom: none;}
     }
