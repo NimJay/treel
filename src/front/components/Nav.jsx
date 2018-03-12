@@ -35,6 +35,8 @@ class Nav extends React.Component {
                 <div className="row">
                     <span className="icon icon-menu"></span>
                     <Link to="/">Home</Link>
+                    {!app.isLoggedIn() || !app.user.isStudent() ?
+                        <Link to="/search">Search</Link> : null}
                     {app.isLoggedIn() &&
                         <LogoutButton setApp={setApp} isMini={true} />}
                 </div>

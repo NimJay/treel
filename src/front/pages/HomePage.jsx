@@ -3,19 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../model/User.js';
 import InstructorDashboard from '../sections/InstructorDashboard.jsx';
-import LogoutButton from '../components/LogoutButton.jsx';
+import StudentDashboard from '../sections/StudentDashboard.jsx';
 
 
 const HomePage = ({ app, setApp }) => {
     if (!app.isLoggedIn())
         return <LoginPage app={app} setApp={setApp} />;
-    if (app.user.type == 1)
+    if (app.user.isInstructor())
         return <InstructorDashboard app={app} setApp={setApp} />;
-    return (
-        <p className="block row">
-            The StudentDashboard is to be implemented in March.<br/>
-            <LogoutButton app={app} setApp={setApp} isMini={true} />
-        </p>);
+    return <StudentDashboard app={app} setApp={setApp} />;
 };
 
 
@@ -25,7 +21,10 @@ const LoginPage = ({ setApp }) => (
             <LoginForm setApp={setApp} />
         </main>
         <aside className="block row" style={{'textAlign': 'center'}}>
-            <p><Link to="/about">About</Link></p>
+            <p>
+                <Link to="/search">Search</Link><br/>
+                <Link to="/about">About</Link>
+            </p>
         </aside>
     </div>
 );
