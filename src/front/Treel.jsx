@@ -19,6 +19,7 @@ import ClassePage from './pages/ClassePage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
+import ClasseSearchPage from './pages/ClasseSearchPage.jsx';
 
 
 /**
@@ -62,6 +63,7 @@ class Treel extends React.Component {
                     <Route path="/about" render={renderPage.bind(null, AboutPage)} />
                     <Route path="/class/new" render={renderPage.bind(null, ClasseCreationPage)} />
                     <Route path="/class/:classeId" render={renderPage.bind(null, ClassePage)} />
+                    <Route path="/search" render={renderPage.bind(null, ClasseSearchPage)} />
                     <Route path="/sign-up" render={renderPage.bind(null, SignUpPage)} />
                     <Route path="*" render={renderPage.bind(null, NotFoundPage)} />
                 </Switch>

@@ -1,0 +1,24 @@
+.classesearchsection {
+    input {
+        margin: 20px 0px 0px 0px;
+        max-width: 100%;
+        width: 100%;
+    }
+    .classelink {
+        display: block;
+        padding: 6px 0px;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+        color: black;
+        > div:nth-child(1) {
+        }
+        > div:nth-child(1), > div:nth-child(2) {
+            vertical-align: top;
+        }
+        > div:nth-child(3), > div:nth-child(4) {
+            font-size: 15px;
+            line-height: 1.4em;
+        }
+        &:nth-child(2) {margin-top: 20px;}
+        &:last-child {border-bottom: none;}
+    }
+}

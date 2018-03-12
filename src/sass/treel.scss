@@ -16,6 +16,7 @@ body {
 body, input, button {
     font-family: 'Muli', sans-serif;
 }
+html {overflow-y: scroll;}
 
 h1 {
     font-size: 32px;
@@ -114,6 +115,7 @@ input[type=text], input[type=password] {
 @import 'popup';
 @import 'selector';
 @import 'classecreationsection';
+@import 'classesearchsection';
 @import 'classesection';
 @import 'instructordashboard';
 @import 'studentdashboard';
