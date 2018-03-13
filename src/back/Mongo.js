@@ -76,6 +76,27 @@ function loadSchemas() {
         classe: { type: Schema.Types.ObjectId, ref: 'Classe' }
     });
     mongoose.model('Sections', sectionsSchema);
+
+    // AccessList
+    var accessListSchema = Schema({
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe', index: true },
+        accessList: { type: String }
+    });
+    mongoose.model('AccessList', accessListSchema);
+
+    // Access
+    var accessSchema = Schema({
+        email: { type: String, index: true },
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe' }
+    });
+    mongoose.model('Access', accessSchema);
+
+    // Follow
+    var followSchema = Schema({
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe' },
+        user: { type: Schema.Types.ObjectId, ref: 'User' }
+    });
+    mongoose.model('Follow', followSchema);
 }
 
 
