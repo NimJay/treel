@@ -38,13 +38,13 @@ function postOutput(req, res, cb) {
                 var isInstructor = user &&
                     classe.instructors.some(i => i.equals(user._id));
                 if (isCreator || isInstructor || !classe.isPrivate)
-                    return findSections(o, cb, classe);
+                    return findSections(o, cb, classe, user);
                 var Access = mongoose.model('Access');
                 Access.findOne({ email: user.email, classe: classe._id },
                     (err, access) => {
                         if (err) return cb(o.err('DATABASE'));
                         if (!access) return cb(o.err('INVALID_INPUT'));
-                        return findSections(o, cb, classe);
+                        return findSections(o, cb, classe, user);
                     }
                 );
             }
@@ -53,7 +53,7 @@ function postOutput(req, res, cb) {
 }
 
 
-function findSections(o, cb, classe) {
+function findSections(o, cb, classe, user) {
     var Sections = mongoose.model('Sections');
     Sections.findOne({ 'classe': classe.id },
         function (err, sections) {
@@ -61,9 +61,19 @@ function findSections(o, cb, classe) {
             if (!sections) return cb(o.err());
             // Remove deleted sections.
             sections.sections = sections.sections.filter(s => !s.isDeleted);
-            return cb(o.set('sections', sections));
+            return findFollow(o.set('sections', sections), cb, classe, user);
         }
     );
+}
+
+
+function findFollow(o, cb, classe, user) {
+    if (!user) return cb(o);
+    var Follow = mongoose.model('Follow');
+    Follow.findOne({ 'classe': classe._id, 'user': user._id }, (err, f) => {
+        if (err) return cb(o.err('DATABASE'));
+        return cb(o.set('follow', f));
+    });
 }
 
 
