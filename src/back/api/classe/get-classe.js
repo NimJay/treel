@@ -29,16 +29,24 @@ function postOutput(req, res, cb) {
             .exec(function (err, classe) {
                 if (err) return cb(o.err('DATABASE'));
                 if (!classe) return cb(o.err('INVALID_INPUT'));
+                o.set('classe', classe);
 
-                // TODO: Handle Classe privacy for logged-in Users.
+                // Check Access.
                 if (classe.isPrivate && !user)
                     return cb(o.err('INVALID_INPUT'));
                 var isCreator = user && classe.creator.equals(user._id);
                 var isInstructor = user &&
                     classe.instructors.some(i => i.equals(user._id));
-
-                o.set('classe', classe);
-                return findSections(o, cb, classe);
+                if (isCreator || isInstructor || !classe.isPrivate)
+                    return findSections(o, cb, classe);
+                var Access = mongoose.model('Access');
+                Access.findOne({ email: user.email, classe: classe._id },
+                    (err, access) => {
+                        if (err) return cb(o.err('DATABASE'));
+                        if (!access) return cb(o.err('INVALID_INPUT'));
+                        return findSections(o, cb, classe);
+                    }
+                );
             }
         );
     });
