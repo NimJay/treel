@@ -100,6 +100,10 @@ class ClasseEditor extends React.Component {
                 <div className="buttons-right">
                     <button type="submit">Save</button>
                 </div>
+                <button type="button"
+                    className="button-mini">Edit Student Emails</button><br/>
+                <button type="button" disabled
+                    className="button-mini">Edit Instructor Emails</button>
             </form>
         );
     }
