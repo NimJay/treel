@@ -130,8 +130,9 @@ class ClassePage extends React.Component {
                 {isEditable &&
                     <SectionCreationSection classeId={classe._id} isAtTop={true}
                         onCreation={this.onSectionCreation.bind(this, true)} />}
-                {!isEditable && <FollowSection follow={follow} classe={classe}
-                    setFollow={this.setFollow.bind(this)} />}
+                {app.isLoggedIn() && !isEditable &&
+                    <FollowSection follow={follow} classe={classe}
+                        setFollow={this.setFollow.bind(this)} />}
                 {sectionSections}
                 {isEditable && sections.sections.length > 0 &&
                     <SectionCreationSection classeId={classe._id}
