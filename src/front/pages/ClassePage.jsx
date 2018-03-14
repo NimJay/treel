@@ -3,6 +3,7 @@ import React from 'react';
 import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
+import FollowSection from '../sections/FollowSection.jsx';
 import SectionCreationSection from '../sections/SectionCreationSection.jsx';
 import SectionSection from '../sections/SectionSection/SectionSection.jsx';
 import { log } from '../util/Global.js';
@@ -42,12 +43,13 @@ class ClassePage extends React.Component {
     }
     onAjaxSuccess(data) {
         log(data);
-        let { error, classe, sections } = data,
+        let { error, classe, sections, follow } = data,
             currentAjax = null;
         if (classe) classe = new Classe(classe);
         let invalid = error && error.code == 4;
         error = !!error;
-        this.setState({ error, invalid, currentAjax, classe, sections });
+        this.setState(
+            { error, invalid, currentAjax, classe, sections, follow });
     }
     onAjaxError(error) {
         log(error);
@@ -55,6 +57,7 @@ class ClassePage extends React.Component {
     }
 
     setClasse(classe) {this.setState({ classe });}
+    setFollow(follow) {this.setState({ follow });}
 
     onSectionCreation(isAtTop, section) {
         let { sections } = this.state;
@@ -98,8 +101,8 @@ class ClassePage extends React.Component {
     render() {
 
         let { app, setApp } = this.props,
-            { isMounted, currentAjax, invalid, error, classe,
-            sections } = this.state;
+            { isMounted, currentAjax, invalid, error, classe, sections,
+                follow } = this.state;
 
         if (isMounted) return false;
         if (currentAjax) return <LoadingSection app={app} setApp={setApp} />;
@@ -127,6 +130,8 @@ class ClassePage extends React.Component {
                 {isEditable &&
                     <SectionCreationSection classeId={classe._id} isAtTop={true}
                         onCreation={this.onSectionCreation.bind(this, true)} />}
+                {!isEditable && <FollowSection follow={follow} classe={classe}
+                    setFollow={this.setFollow.bind(this)} />}
                 {sectionSections}
                 {isEditable && sections.sections.length > 0 &&
                     <SectionCreationSection classeId={classe._id}

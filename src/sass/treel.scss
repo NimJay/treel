@@ -109,6 +109,12 @@ input[type=text], input[type=password] {
     margin-top: 80px;
 }
 
+.followsection button.button-mini {
+    display: inline-block;
+    padding: 12px 25px 12px 25px;
+    color: $color-red;
+}
+
 @import 'grid';
 @import 'checkbox';
 @import 'nav';
