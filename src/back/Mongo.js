@@ -77,12 +77,12 @@ function loadSchemas() {
     });
     mongoose.model('Sections', sectionsSchema);
 
-    // AccessList
-    var accessListSchema = Schema({
+    // StudentList
+    var studentListSchema = Schema({
         classe: { type: Schema.Types.ObjectId, ref: 'Classe', index: true },
-        accessList: { type: String }
+        studentList: { type: String }
     });
-    mongoose.model('AccessList', accessListSchema);
+    mongoose.model('StudentList', studentListSchema);
 
     // Access
     var accessSchema = Schema({
