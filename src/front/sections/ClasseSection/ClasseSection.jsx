@@ -44,7 +44,8 @@ class ClasseSection extends React.Component {
                     <div>{classe.term} &mdash; {classe.school.name}</div>
                     <InstructorsDiv instructors={classe.instructors} />
                 </div>
-                {!classe.isActive && isEditable && <InactiveDiv />}
+                {isEditable && <PrivateActiveDiv isPrivate={classe.isPrivate}
+                    isActive={classe.isActive} />}
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
                         <ClasseEditor classe={classe}
@@ -56,11 +57,17 @@ class ClasseSection extends React.Component {
 }
 
 
-const InactiveDiv = () => (
-    <aside className="row">
-        This page is <span className="color-red">inactive</span>.
-    </aside>
-);
+const PrivateActiveDiv = ({ isPrivate, isActive }) => {
+    if (!isPrivate && isActive) return null;
+    return (
+        <aside className="row">
+            This page is
+                {isPrivate && ' private'}
+                {isPrivate && !isActive && ' and'}
+                {!isActive && <span className="color-red"> inactive</span>}.
+        </aside>
+    );
+};
 
 const InstructorsDiv = ({ instructors }) => (
     instructors.length == 0 ? null :
