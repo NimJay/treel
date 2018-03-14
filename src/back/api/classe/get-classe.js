@@ -29,7 +29,6 @@ function postOutput(req, res, cb) {
             .exec(function (err, classe) {
                 if (err) return cb(o.err('DATABASE'));
                 if (!classe) return cb(o.err('INVALID_INPUT'));
-                o.set('classe', classe);
 
                 // Check Access.
                 if (classe.isPrivate && !user)
@@ -54,6 +53,7 @@ function postOutput(req, res, cb) {
 
 
 function findSections(o, cb, classe, user) {
+    o.set('classe', classe);
     var Sections = mongoose.model('Sections');
     Sections.findOne({ 'classe': classe.id },
         function (err, sections) {
