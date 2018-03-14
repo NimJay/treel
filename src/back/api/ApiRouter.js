@@ -12,6 +12,7 @@ router
     .post('/classe/create-classe', require('./classe/create-classe.js').post)
     .post('/classe/get-classe', require('./classe/get-classe.js').post)
     .post('/classe/get-dashboard', require('./classe/get-dashboard.js').post)
+    .post('/classe/get-studentlist', require('./classe/get-studentlist.js').post)
     .post('/classe/search-classes', require('./classe/search-classes.js').post)
     .post('/classe/update-classe', require('./classe/update-classe.js').post)
     .post('/follow/create-follow', require('./follow/create-follow.js').post)
