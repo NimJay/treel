@@ -5,7 +5,6 @@ import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
 import { School } from '../model/School.js';
 import { log } from '../util/Global.js';
-import LogoutButton from '../components/LogoutButton.jsx';
 
 
 class StudentDashboard extends React.Component {
@@ -74,8 +73,7 @@ class StudentDashboard extends React.Component {
                     </div>
                 </main>
                 <p className="block row">
-                    The StudentDashboard is to be implemented in March.<br/>
-                    <LogoutButton app={app} setApp={setApp} isMini={true} />
+                    The StudentDashboard is to be implemented in March.
                 </p>
             </div>
         );
