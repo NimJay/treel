@@ -18,6 +18,7 @@ function post(req, res) {
         .find({ $or: [
             {'courseCode' : { $regex: regex, $options: 'i' }},
             {'courseName' : { $regex: regex, $options: 'i' }}]})
+        .where({ isPrivate: false })
         .limit(100)
         .populate('school')
         .populate('instructors')
