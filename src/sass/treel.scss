@@ -8,12 +8,12 @@ $color-blue: rgb(82, 114, 231);
 $color-purple: rgb(190, 82, 220);
 
 body {
-    font-size: 18px;
-    line-height: 1.5em;
     color: $color-black;
     background-color: rgb(250, 250, 250);
 }
-body, input, button {
+body, input, button, textarea {
+    font-size: 18px;
+    line-height: 1.5em;
     font-family: 'Muli', sans-serif;
 }
 html {overflow-y: scroll;}
@@ -95,6 +95,16 @@ input[type=text], input[type=password] {
         border-bottom: solid 2px $color-green;
     }
 }
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    height: 5.5em;
+    outline: none;
+    border: none;
+    border-left: solid 2px rgba(0, 0, 0, 0.1);
+}
+textarea:focus {border-left: solid 2px $color-green;}
 
 .icon {
     cursor: pointer;
