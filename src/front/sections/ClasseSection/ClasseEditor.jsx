@@ -78,7 +78,8 @@ class ClasseEditor extends React.Component {
 
     render() {
 
-        let { currentAjax, errorMessage, courseCode, courseName, term, isActive,
+        let { onEditStudentList } = this.props,
+            { currentAjax, errorMessage, courseCode, courseName, term, isActive,
             isPrivate } = this.state;
 
         return (
@@ -100,7 +101,7 @@ class ClasseEditor extends React.Component {
                 <div className="buttons-right">
                     <button type="submit">Save</button>
                 </div>
-                <button type="button"
+                <button type="button" onClick={onEditStudentList}
                     className="button-mini">Edit Student Emails</button><br/>
                 <button type="button" disabled
                     className="button-mini">Edit Instructor Emails</button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from '../../components/Popup.jsx';
 import ClasseEditor from './ClasseEditor.jsx';
+import StudentListEditor from './StudentListEditor.jsx';
 
 
 /**
@@ -11,12 +12,15 @@ class ClasseSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showEditor: false
+            showEditor: false,
+            showSLEditor: false // Hide/Show <StudentListEditor>
         };
     }
 
     showEditor() {this.setState({ showEditor: true });}
     hideEditor() {this.setState({ showEditor: false });}
+    showSLEditor() {this.setState({ showSLEditor: true, showEditor: false });}
+    hideSLEditor() {this.setState({ showSLEditor: false });}
     onUpdate(classe) {
         this.setState({ showEditor: false },
             this.props.onUpdate.bind(null, classe));
@@ -25,7 +29,7 @@ class ClasseSection extends React.Component {
     render() {
 
         let { isEditable, classe, onUpdate } = this.props,
-            { showEditor } = this.state;
+            { showEditor, showSLEditor } = this.state;
 
         return (
             <header className="block classesection">
@@ -49,7 +53,13 @@ class ClasseSection extends React.Component {
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
                         <ClasseEditor classe={classe}
+                            onEditStudentList={this.showSLEditor.bind(this)}
                             onUpdate={this.onUpdate.bind(this)} />
+                    </Popup>}
+                {showSLEditor &&
+                    <Popup onClose={this.hideSLEditor.bind(this)}>
+                        <StudentListEditor classe={classe}
+                            onClose={this.hideSLEditor.bind(this)} />
                     </Popup>}
             </header>
         );
