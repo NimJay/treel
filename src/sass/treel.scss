@@ -99,10 +99,11 @@ input[type=text], input[type=password] {
 textarea {
     width: 100%;
     padding: 8px;
-    height: 5.5em;
+    height: 5.8em;
     outline: none;
     border: none;
-    border-left: solid 2px rgba(0, 0, 0, 0.1);
+    border: solid 2px rgba(0, 0, 0, 0.1);
+    border-right: none;
 }
 textarea:focus {border-left: solid 2px $color-green;}
 
