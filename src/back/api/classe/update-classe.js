@@ -33,7 +33,7 @@ function post(req, res) {
         if (typeof(isPrivate) !== 'boolean')
             return o.err('INVALID_INPUT', 'Invalid isPrivate.').out();
         if (!mongoose.Types.ObjectId.isValid(classeId))
-            return cb(o.err('INVALID_INPUT', 'Invalid classeId'));
+            return o.err('INVALID_INPUT', 'Invalid classeId').out();
 
 
         // Retrieve and update Classe.
