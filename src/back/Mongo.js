@@ -97,6 +97,15 @@ function loadSchemas() {
         user: { type: Schema.Types.ObjectId, ref: 'User' }
     });
     mongoose.model('Follow', followSchema);
+
+    // File
+    var file = Schema({
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe' },
+        name: { type: String },
+        description: { type: String },
+        mimeType: { type: String }
+    });
+    mongoose.model('File', file);
 }
 
 
