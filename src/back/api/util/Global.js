@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 function getLoggedInUserId(req) {
+    if (!req.session) return null;
     return req.session.userId;
 }
 
