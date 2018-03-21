@@ -33,6 +33,7 @@ class FileUploaderSection extends React.Component {
         if (element.files.length == 0) m = 'Please select a file.';
         if (m.length > 0) return this.setState({ errorMessage: m });
         formData.append('file', element.files[0]);
+        formData.append('classeId', this.props.classe._id);
         let currentAjax = ajax({
             type: 'POST',
             url: '/api/content/upload-file',
