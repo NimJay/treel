@@ -35,7 +35,7 @@ function post(req, res) {
                 return o.err().out();
 
             // Create Mongo File object.
-            fileObject = new File({ name: file.name, mimeType: file.mimeType });
+            fileObject = new File({ name: file.name, mimeType: file.mimetype });
             fileObject.save((err, newFile) => {
                 if (err) return o.err('DATABASE').out();
                 if (!newFile) return o.err('INVALID_INPUT').out();
@@ -43,7 +43,7 @@ function post(req, res) {
                 // Save the actual file.
                 file.mv(FILES_DIR + newFile._id, (err) => {
                     if (err) return o.err('GENERIC', 'Failed to save').out();
-                    o.set('file', file).out();
+                    o.set('file', newFile).out();
                 });
             });
         });
