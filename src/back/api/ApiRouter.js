@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 router.use(bodyParser.json()); // Input is always JSON.
 router.use(function (req, res, next) {
     res.setHeader('Content-Type', 'application/json'); // Output is always JSON.
     next();
-})
+});
+router.use('/content/upload-file', fileUpload(
+    { limits: { fileSize: 50 * 1024 * 1024 } }));
 
 router
     .post('/classe/create-classe', require('./classe/create-classe.js').post)
@@ -16,6 +19,7 @@ router
     .post('/classe/search-classes', require('./classe/search-classes.js').post)
     .post('/classe/update-classe', require('./classe/update-classe.js').post)
     .post('/classe/update-studentlist', require('./classe/update-studentlist.js').post)
+    .post('/content/upload-file', require('./content/upload-file.js').post)
     .post('/follow/create-follow', require('./follow/create-follow.js').post)
     .post('/follow/remove-follow', require('./follow/remove-follow.js').post)
     .post('/get-logged-in-user', require('./get-logged-in-user.js').post)
