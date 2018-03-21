@@ -45,7 +45,7 @@ function post(req, res) {
 
             // Must be creator or instructor.
             if (!classe.creator.equals(user._id) &&
-                classe.instructors.map(i => !i.equals(user._id)).every())
+                classe.instructors.every(i => !i.equals(user._id)))
                 return o.err().out();
 
             // Update and save.
