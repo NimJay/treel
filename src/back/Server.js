@@ -5,6 +5,7 @@ const app = express();
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const api = require('./api/ApiRouter.js');
+const download = require('./Downloader.js').download;
 const CONFIG = require('./Config');
 const { connect } = require('./Mongo.js');
 const HtmlCreator = require('./HtmlCreator.js').HtmlCreator;
@@ -23,6 +24,7 @@ connect(function (db) {
 
     app.use(express.static(__dirname + '/../public')); // Serve this directory.
     app.use('/api', api); // Treel API.
+    app.get('/file/:fileId', download); // Download Users' uploads.
 
     // Send index.html for all pages.
     app.get('/', sendHtml.bind(null, '/'));
