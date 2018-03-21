@@ -66,6 +66,11 @@ class ClasseSection extends React.Component {
     }
 }
 
+const InactiveDiv = () => (
+    <aside className="row">
+        This page is<span className="color-red"> inactive</span>.
+    </aside>
+);
 
 const PrivateActiveDiv = ({ isPrivate, isActive }) => {
     if (!isPrivate && isActive) return null;
