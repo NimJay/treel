@@ -9,3 +9,6 @@ src/public/css/treel.css
 
 # Occasionally created by npm commands.
 src/package-lock.json
+
+# User-uploaded files.
+src/back/file
