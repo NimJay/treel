@@ -35,7 +35,9 @@ function post(req, res) {
                 return o.err().out();
 
             // Create Mongo File object.
-            fileObject = new File({ name: file.name, mimeType: file.mimetype });
+            fileObject = new File({
+                classe: classe._id, name: file.name, mimeType: file.mimetype
+            });
             fileObject.save((err, newFile) => {
                 if (err) return o.err('DATABASE').out();
                 if (!newFile) return o.err('INVALID_INPUT').out();
