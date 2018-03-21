@@ -1,10 +1,11 @@
+const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express();
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const api = require('./api/ApiRouter.js');
-const PORT = require('./Config').PORT;
+const CONFIG = require('./Config');
 const { connect } = require('./Mongo.js');
 const HtmlCreator = require('./HtmlCreator.js').HtmlCreator;
 
@@ -33,8 +34,12 @@ connect(function (db) {
     // Everything else: 404.
     app.use(sendHtml.bind(null, null));
 
-    app.listen(PORT, function () {
-        console.log('Serving Treel at: http://localhost:' + PORT);
+    // Create directory for uploaded files.
+    if (!fs.existsSync(CONFIG.FILES_DIR))
+        fs.mkdirSync(CONFIG.FILES_DIR);
+
+    app.listen(CONFIG.PORT, function () {
+        console.log('Serving Treel at: http://localhost:' + CONFIG.PORT);
     });
 });
 
