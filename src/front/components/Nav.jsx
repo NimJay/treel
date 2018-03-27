@@ -21,7 +21,7 @@ class Nav extends React.Component {
         if (!showLinks) {
             return (
                 <nav className="navigation block"
-                    onMouseEnter={this.showLinks.bind(this)}>
+                    onMouseOver={this.showLinks.bind(this)}>
                     <div className="row">
                         <span className="icon icon-menu"></span>
                     </div>
