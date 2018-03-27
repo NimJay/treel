@@ -36,7 +36,8 @@ class SectionSection extends React.Component {
 
         return (
             <section className={"sectionsection block" +
-                (section.isDeleted ? ' deleted' : '')}>
+                (section.isDeleted ? ' deleted' : '') +
+                (isEditable ? ' editable' : '')}>
                 <div className="row">
                     <div><h2>{section.name}</h2></div>
                     {isEditable ?
