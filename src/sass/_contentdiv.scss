@@ -1,0 +1,9 @@
+.contentdiv {
+    &.editable {border-top: solid 1px rgba(0, 0, 0, 0.1);}
+    .contentdiv-icons {
+        text-align: right;
+        > .icon {margin-right: 15px;}
+        > .icon:last-child {margin-right: 0px;}
+        > .icon.disabled {opacity: 0.2;}
+    }
+}

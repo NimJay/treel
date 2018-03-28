@@ -11,8 +11,13 @@ const ContentDiv = ({ classe, section, content, isEditable }) => {
         div = (<p>{content.paragraph}</p>);
 
     return (
-        <div className="contentdiv row">
-            {isEditable && <div>Edit panel</div>}
+        <div className={"contentdiv row" + (isEditable ? ' editable' : '')}>
+            {isEditable &&
+                <div className="contentdiv-icons">
+                    <span className="icon icon-arrow-down"></span>
+                    <span className="icon icon-arrow-up"></span>
+                    <span className="icon icon-edit"></span>
+                </div>}
             {div}
         </div>
     );
