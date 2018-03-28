@@ -12,4 +12,12 @@ function getLoggedInUser(req, callback) {
     User.findById(id, callback);
 }
 
-module.exports = { getLoggedInUserId, getLoggedInUser };
+function isValidContent(c) {
+    if (c.type == 'paragraph') {
+        if (!c.paragraph || c.paragraph.length == 0)
+            return false;
+    }
+    return true;
+}
+
+module.exports = { getLoggedInUserId, getLoggedInUser, isValidContent };
