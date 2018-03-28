@@ -76,19 +76,14 @@ class ClassePage extends React.Component {
     onContentMove(i, j, isMoveUp) {
         let ss = this.state.sections,
             temp = ss.sections[i].contents[j];
-        console.log("----- Move -----");
-        console.log(ss.sections[i].contents.map(c => c._id));
         // Warning: May be buggy; consider cloning.
         if (isMoveUp && j != 0) {
             ss.sections[i].contents[j] = ss.sections[i].contents[j - 1];
             ss.sections[i].contents[j - 1] = temp;
-            console.log("----- Up");
         } else if (!isMoveUp && j < ss.sections[i].contents.length - 1) {
             ss.sections[i].contents[j] = ss.sections[i].contents[j + 1];
             ss.sections[i].contents[j + 1] = temp;
-            console.log("----- Down");
         }
-        console.log(ss.sections[i].contents.map(c => c._id));
         this.setState({ sections: ss });
     }
 
