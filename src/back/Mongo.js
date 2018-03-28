@@ -60,7 +60,8 @@ function loadSchemas() {
 
     // Content
     var contentSchema = Schema({
-        type: String
+        type: String,
+        paragraph: String
     });
 
     // Section

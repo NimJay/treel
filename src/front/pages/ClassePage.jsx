@@ -59,6 +59,34 @@ class ClassePage extends React.Component {
     setClasse(classe) {this.setState({ classe });}
     setFollow(follow) {this.setState({ follow });}
 
+    onContentCreation(i, content) {
+        let { sections } = this.state;
+        // Warning: May be buggy; consider cloning.
+        sections.sections[i].contents.push(content);
+        this.setState({ sections });
+    }
+
+    onContentUpdate(i, j, content) {
+        let { sections } = this.state;
+        // Warning: May be buggy; consider cloning.
+        sections.sections[i].contents[j] = content;
+        this.setState({ sections });
+    }
+
+    onContentMove(i, j, isMoveUp) {
+        let ss = this.state.sections,
+            temp = ss.sections[i].contents[j];
+        // Warning: May be buggy; consider cloning.
+        if (isMoveUp && j != 0) {
+            ss.sections[i].contents[j] = ss.sections[i].contents[j];
+            ss.sections[i].contents[j - 1] = temp;
+        } else if (isMoveDown && j < ss.sections[i].length - 1) {
+            ss.sections[i].contents[j] = ss.sections[i].contents[j + 1];
+            ss.sections[i].contents[j + 1] = temp;
+        }
+        this.setState({ sections: ss });
+    }
+
     onSectionCreation(isAtTop, section) {
         let { sections } = this.state;
         // Warning: May be buggy; consider cloning.
@@ -117,9 +145,10 @@ class ClassePage extends React.Component {
         let sectionSections = sections.sections.map((s, i) =>
             <SectionSection section={s} key={i} isEditable={isEditable}
                 isFirst={i == 0} isLast={i == sections.sections.length - 1}
+                onContentCreation={this.onContentCreation.bind(this, i)}
                 onUpdate={this.onSectionUpdate.bind(this, i)}
                 onMove={this.onSectionMove.bind(this, i)}
-                classeId={classe._id} />
+                classe={classe} />
         );
 
         return (
