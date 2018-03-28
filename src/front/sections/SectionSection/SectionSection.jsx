@@ -3,6 +3,7 @@ import Popup from '../../components/Popup.jsx';
 import SectionEditor from './SectionEditor.jsx';
 import SectionMover from './SectionMover.jsx';
 import ContentCreatorPopup from './ContentCreatorPopup.jsx';
+import ContentDiv from './ContentDiv.jsx';
 
 
 /**
@@ -43,6 +44,11 @@ class SectionSection extends React.Component {
             onContentCreation } = this.props,
             { showEditor, showCreator } = this.state;
 
+        let contentDivs = section.contents.map(c =>
+            <ContentDiv classe={classe} section={section} content={c}
+                isEditable={isEditable} key={c._id} />
+        );
+
         return (
             <section className={"sectionsection block" +
                 (section.isDeleted ? ' deleted' : '') +
@@ -63,6 +69,7 @@ class SectionSection extends React.Component {
                         : <div></div>}
                     {section.isDeleted && <DeletedWarning/>}
                 </div>
+                {contentDivs}
                 <div className="row">
                     <button onClick={this.showCreator.bind(this)}
                         className="button-mini">Add Content</button>
