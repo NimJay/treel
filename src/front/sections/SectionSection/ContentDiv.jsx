@@ -1,10 +1,14 @@
 import React from 'react';
+import ContentMover from './ContentMover.jsx';
+
 
 /**
  * <ContentDiv>
- * Props: classe, section, content, isEditable
+ * Props:
+ *    classe, section, content, isEditable, isFirst, isLast, onMove(isMoveUp)
  */
-const ContentDiv = ({ classe, section, content, isEditable }) => {
+const ContentDiv = (
+    { classe, section, content, isEditable, isFirst, isLast, onMove }) => {
 
     let div = null;
     if (content.type == 'paragraph')
@@ -14,8 +18,12 @@ const ContentDiv = ({ classe, section, content, isEditable }) => {
         <div className={"contentdiv row" + (isEditable ? ' editable' : '')}>
             {isEditable &&
                 <div className="contentdiv-icons">
-                    <span className="icon icon-arrow-down"></span>
-                    <span className="icon icon-arrow-up"></span>
+                    <ContentMover classeId={classe._id} sectionId={section._id}
+                        contentId={content._id} isMoveUp={false}
+                        disabled={isLast} onMove={null} onMove={onMove} />
+                    <ContentMover classeId={classe._id} sectionId={section._id}
+                        contentId={content._id} isMoveUp={true}
+                        disabled={isFirst} onMove={null} onMove={onMove} />
                     <span className="icon icon-edit"></span>
                 </div>}
             {div}

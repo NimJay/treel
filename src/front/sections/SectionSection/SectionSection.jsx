@@ -10,7 +10,7 @@ import ContentDiv from './ContentDiv.jsx';
  * <SectionSection>
  * Props:
  *    classe, section, onUpdate(section), onDelete(), onMove(), isEditable,
- *    isFirst, isLast, onContentCreation(content)
+ *    isFirst, isLast, onContentCreation(content), onContentMove(j, isMoveUp)
  */
 class SectionSection extends React.Component {
 
@@ -41,12 +41,14 @@ class SectionSection extends React.Component {
     render() {
 
         let { classe, section, onMove, isEditable, isFirst, isLast,
-            onContentCreation } = this.props,
+            onContentCreation, onContentMove } = this.props,
             { showEditor, showCreator } = this.state;
 
-        let contentDivs = section.contents.map(c =>
+        let contentDivs = section.contents.map((c, i) =>
             <ContentDiv classe={classe} section={section} content={c}
-                isEditable={isEditable} key={c._id} />
+                isEditable={isEditable} key={c._id}
+                isFirst={i == 0} isLast={i + 1 == section.contents.length}
+                onMove={onContentMove.bind(null, i)} />
         );
 
         return (

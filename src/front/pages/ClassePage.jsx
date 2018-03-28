@@ -76,14 +76,19 @@ class ClassePage extends React.Component {
     onContentMove(i, j, isMoveUp) {
         let ss = this.state.sections,
             temp = ss.sections[i].contents[j];
+        console.log("----- Move -----");
+        console.log(ss.sections[i].contents.map(c => c._id));
         // Warning: May be buggy; consider cloning.
         if (isMoveUp && j != 0) {
-            ss.sections[i].contents[j] = ss.sections[i].contents[j];
+            ss.sections[i].contents[j] = ss.sections[i].contents[j - 1];
             ss.sections[i].contents[j - 1] = temp;
-        } else if (isMoveDown && j < ss.sections[i].length - 1) {
+            console.log("----- Up");
+        } else if (!isMoveUp && j < ss.sections[i].contents.length - 1) {
             ss.sections[i].contents[j] = ss.sections[i].contents[j + 1];
             ss.sections[i].contents[j + 1] = temp;
+            console.log("----- Down");
         }
+        console.log(ss.sections[i].contents.map(c => c._id));
         this.setState({ sections: ss });
     }
 
@@ -146,6 +151,7 @@ class ClassePage extends React.Component {
             <SectionSection section={s} key={i} isEditable={isEditable}
                 isFirst={i == 0} isLast={i == sections.sections.length - 1}
                 onContentCreation={this.onContentCreation.bind(this, i)}
+                onContentMove={this.onContentMove.bind(this, i)}
                 onUpdate={this.onSectionUpdate.bind(this, i)}
                 onMove={this.onSectionMove.bind(this, i)}
                 classe={classe} />
