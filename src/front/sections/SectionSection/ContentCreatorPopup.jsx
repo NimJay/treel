@@ -1,7 +1,8 @@
 import React from 'react';
 import Popup from '../../components/Popup.jsx';
-import ParagraphCreator from './ParagraphCreator.jsx';
+import FileCreator from './FileCreator.jsx';
 import LinkCreator from './LinkCreator.jsx';
+import ParagraphCreator from './ParagraphCreator.jsx';
 
 
 /**
@@ -37,8 +38,14 @@ class ContentCreatorPopup extends React.Component {
                         onCreation={onCreation} />
                 </Popup>
             );
+        } else if (type == "file") {
+            return (
+                <Popup onClose={onClose}>
+                    <FileCreator classe={classe} section={section}
+                        onCreation={onCreation} />
+                </Popup>
+            );
         }
-        if (type == "file") return null;
 
         return (
             <Popup onClose={onClose}>

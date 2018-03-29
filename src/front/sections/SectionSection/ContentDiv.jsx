@@ -11,12 +11,18 @@ const ContentDiv = (
     { classe, section, content, isEditable, isFirst, isLast, onMove }) => {
 
     let div = null;
+
     if (content.type == 'paragraph')
         div = (<p>{content.paragraph}</p>);
+
     else if (content.type == 'link') {
         let link = content.link;
         if (!link.match(/^https?:\/\//i)) link = 'http://' + link;
         div = (<p><a href={link}>{content.name}</a> {content.description}</p>);
+
+    } else if (content.type == 'file') {
+        div = (<p><a href={"/file/" + content.file}>
+            {content.name}</a> {content.description}</p>);
     }
 
     return (
