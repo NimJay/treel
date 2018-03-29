@@ -127,6 +127,11 @@ textarea:focus {border-left: solid 2px $color-green;}
     color: $color-red;
 }
 
+.studentlisteditor textarea {
+    height: 200px;
+    font-size: 14px;
+}
+
 @import 'grid';
 @import 'checkbox';
 @import 'nav';

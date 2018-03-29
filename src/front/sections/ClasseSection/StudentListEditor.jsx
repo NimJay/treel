@@ -99,7 +99,7 @@ class StudentListEditor extends React.Component {
             return (<section><p>Sorry, something went wrong.</p></section>);
 
         return (
-            <section className="block row">
+            <section className="studentlisteditor block row">
                 <h2>Student List</h2>
                 <p>Note: Access will only be limited to the provided emails if the class is private.</p>
                 <form onSubmit={this.onSubmit.bind(this)}>
