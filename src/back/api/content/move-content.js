@@ -15,11 +15,11 @@ function post (req, res) {
 
     // Validate some input.
     if (!mongoose.Types.ObjectId.isValid(classeId))
-        return cb(o.err('INVALID_INPUT', 'Invalid classeId.'));
+        return o.err('INVALID_INPUT', 'Invalid classeId.').out();
     if (!mongoose.Types.ObjectId.isValid(sectionId))
-        return cb(o.err('INVALID_INPUT', 'Invalid sectionId.'));
+        return o.err('INVALID_INPUT', 'Invalid sectionId.').out();
     if (!mongoose.Types.ObjectId.isValid(contentId))
-        return cb(o.err('INVALID_INPUT', 'Invalid contentId.'));
+        return o.err('INVALID_INPUT', 'Invalid contentId.').out();
     if (typeof(isMoveUp) !== 'boolean')
         return o.err('INVALID_INPUT', 'Invalid isMoveUp.').out();
 
@@ -49,13 +49,13 @@ function getClasse(o, sectionId, contentId, isMoveUp, user, ss) {
             classe.instructors.every(i => !i.equals(user._id)))
             return o.err('INVALID_INPUT').out();
 
-        return createContent(o, sectionId, contentId, isMoveUp, ss);
+        return moveContent(o, sectionId, contentId, isMoveUp, ss);
     });
 }
 
 
-// Create, save, and output new Content.
-function createContent(o, sectionId, contentId, isMoveUp, ss) {
+// Move, save, and output.
+function moveContent(o, sectionId, contentId, isMoveUp, ss) {
     // Locate the Section.
     let i = ss.sections.findIndex(s => s._id.equals(sectionId));
     if (i == -1)
