@@ -1,5 +1,6 @@
 .sectionsection {
     padding-top: 30px;
+    > .row {padding: 0px;}
     > .row:nth-child(1) {
         > div:nth-child(1), > div:nth-child(2) {
             display: inline-block;

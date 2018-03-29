@@ -1,5 +1,9 @@
-.contentdiv {
-    &.editable {border-top: solid 1px rgba(0, 0, 0, 0.1);}
+.contentdiv.row {
+    > p {margin-top: 0px;}
+    &.editable {
+        border-top: solid 1px rgba(0, 0, 0, 0.1);
+        padding: 16px 0px;
+    }
     .contentdiv-icons {
         text-align: right;
         > .icon {margin-right: 15px;}
