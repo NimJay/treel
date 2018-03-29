@@ -55,11 +55,11 @@ button, a.button {
     border-radius: 4px;
     cursor: pointer;
     box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.2);
-
     &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
+    &.button-red {background-color: $color-red;}
 }
 .buttons-right {
     margin-top: 20px;

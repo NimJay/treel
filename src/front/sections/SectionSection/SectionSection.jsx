@@ -41,14 +41,15 @@ class SectionSection extends React.Component {
     render() {
 
         let { classe, section, onMove, isEditable, isFirst, isLast,
-            onContentCreation, onContentMove } = this.props,
+            onContentCreation, onContentMove, onContentDeletion } = this.props,
             { showEditor, showCreator } = this.state;
 
         let contentDivs = section.contents.map((c, i) =>
             <ContentDiv classe={classe} section={section} content={c}
                 isEditable={isEditable} key={c._id}
                 isFirst={i == 0} isLast={i + 1 == section.contents.length}
-                onMove={onContentMove.bind(null, i)} />
+                onMove={onContentMove.bind(null, i)}
+                onDeletion={onContentDeletion.bind(null, i)} />
         );
 
         return (

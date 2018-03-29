@@ -1,5 +1,6 @@
 import React from 'react';
 import ContentMover from './ContentMover.jsx';
+import ContentDeleter from './ContentDeleter.jsx';
 
 
 /**
@@ -7,8 +8,8 @@ import ContentMover from './ContentMover.jsx';
  * Props:
  *    classe, section, content, isEditable, isFirst, isLast, onMove(isMoveUp)
  */
-const ContentDiv = (
-    { classe, section, content, isEditable, isFirst, isLast, onMove }) => {
+const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
+    onMove, onDeletion }) => {
 
     let div = null;
 
@@ -35,7 +36,8 @@ const ContentDiv = (
                     <ContentMover classeId={classe._id} sectionId={section._id}
                         contentId={content._id} isMoveUp={true}
                         disabled={isFirst} onMove={null} onMove={onMove} />
-                    <span className="icon icon-edit"></span>
+                    <ContentDeleter classeId={classe._id} sectionId={section._id}
+                        content={content} onDeletion={onDeletion} />
                 </div>}
             {div}
         </div>

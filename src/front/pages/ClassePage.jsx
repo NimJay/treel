@@ -87,6 +87,12 @@ class ClassePage extends React.Component {
         this.setState({ sections: ss });
     }
 
+    onContentDeletion(i, j) {
+        let ss = this.state.sections;
+        ss.sections[i].contents.splice(j, 1);
+        this.setState({ sections: ss });
+    }
+
     onSectionCreation(isAtTop, section) {
         let { sections } = this.state;
         // Warning: May be buggy; consider cloning.
@@ -147,6 +153,7 @@ class ClassePage extends React.Component {
                 isFirst={i == 0} isLast={i == sections.sections.length - 1}
                 onContentCreation={this.onContentCreation.bind(this, i)}
                 onContentMove={this.onContentMove.bind(this, i)}
+                onContentDeletion={this.onContentDeletion.bind(this, i)}
                 onUpdate={this.onSectionUpdate.bind(this, i)}
                 onMove={this.onSectionMove.bind(this, i)}
                 classe={classe} />
