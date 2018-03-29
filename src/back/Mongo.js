@@ -64,7 +64,8 @@ function loadSchemas() {
         paragraph: String,
         link: String,
         name: String,
-        description: String
+        description: String,
+        file: { type: Schema.Types.ObjectId, ref: 'File' }
     });
 
     // Section
