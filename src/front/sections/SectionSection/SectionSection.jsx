@@ -72,10 +72,11 @@ class SectionSection extends React.Component {
                     {section.isDeleted && <DeletedWarning/>}
                 </div>
                 {contentDivs}
-                <div className="row">
-                    <button onClick={this.showCreator.bind(this)}
-                        className="button-mini">Add Content</button>
-                </div>
+                {isEditable &&
+                    <div className="row">
+                        <button onClick={this.showCreator.bind(this)}
+                            className="button-mini">Add Content</button>
+                    </div>}
                 {showEditor &&
                     <Popup onClose={this.hideEditor.bind(this)}>
                         <SectionEditor section={section} classeId={classe._id}
