@@ -20,6 +20,7 @@ router
     .post('/classe/update-classe', require('./classe/update-classe.js').post)
     .post('/classe/update-studentlist', require('./classe/update-studentlist.js').post)
     .post('/content/create-content', require('./content/create-content.js').post)
+    .post('/content/delete-content', require('./content/delete-content.js').post)
     .post('/content/get-files', require('./content/get-files.js').post)
     .post('/content/move-content', require('./content/move-content.js').post)
     .post('/content/upload-file', require('./content/upload-file.js').post)
