@@ -12,11 +12,20 @@ function getLoggedInUser(req, callback) {
     User.findById(id, callback);
 }
 
+/**
+ * Return true iff the given Content is valid.
+ */
 function isValidContent(c) {
+
     if (c.type == 'paragraph') {
-        if (!c.paragraph || c.paragraph.length == 0)
+        if (!c.paragraph)
+            return false;
+
+    } else if (c.type == 'link') {
+        if (!c.link || !c.name)
             return false;
     }
+
     return true;
 }
 

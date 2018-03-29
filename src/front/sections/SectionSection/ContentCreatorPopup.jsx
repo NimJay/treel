@@ -1,6 +1,8 @@
 import React from 'react';
 import Popup from '../../components/Popup.jsx';
 import ParagraphCreator from './ParagraphCreator.jsx';
+import LinkCreator from './LinkCreator.jsx';
+
 
 /**
  * <ContentCreatorPopup>
@@ -28,8 +30,14 @@ class ContentCreatorPopup extends React.Component {
                         onCreation={onCreation} />
                 </Popup>
             );
+        } else if (type == "link") {
+            return (
+                <Popup onClose={onClose}>
+                    <LinkCreator classe={classe} section={section}
+                        onCreation={onCreation} />
+                </Popup>
+            );
         }
-        if (type == "link") return null;
         if (type == "file") return null;
 
         return (

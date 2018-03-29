@@ -13,6 +13,11 @@ const ContentDiv = (
     let div = null;
     if (content.type == 'paragraph')
         div = (<p>{content.paragraph}</p>);
+    else if (content.type == 'link') {
+        let link = content.link;
+        if (!link.match(/^https?:\/\//i)) link = 'http://' + link;
+        div = (<p><a href={link}>{content.name}</a> {content.description}</p>);
+    }
 
     return (
         <div className={"contentdiv row" + (isEditable ? ' editable' : '')}>
