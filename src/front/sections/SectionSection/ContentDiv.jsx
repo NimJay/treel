@@ -13,8 +13,10 @@ const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
 
     let div = null;
 
-    if (content.type == 'text')
-        div = (<p>{content.text}</p>);
+    if (content.type == 'text') {
+        div = (<p>{content.text.split('\n')
+            .map((a, i) => <span key={i}>{a}<br/></span>)}</p>);
+    }
 
     else if (content.type == 'link') {
         let link = content.link;
