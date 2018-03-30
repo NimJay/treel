@@ -61,7 +61,7 @@ function loadSchemas() {
     // Content
     var contentSchema = Schema({
         type: String,
-        paragraph: String,
+        text: String,
         link: String,
         name: String,
         description: String,

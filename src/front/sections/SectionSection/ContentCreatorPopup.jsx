@@ -2,7 +2,7 @@ import React from 'react';
 import Popup from '../../components/Popup.jsx';
 import FileCreator from './FileCreator.jsx';
 import LinkCreator from './LinkCreator.jsx';
-import ParagraphCreator from './ParagraphCreator.jsx';
+import TextCreator from './TextCreator.jsx';
 
 
 /**
@@ -24,10 +24,10 @@ class ContentCreatorPopup extends React.Component {
         let { classe, section, onCreation, onClose } = this.props,
             { type } = this.state;
 
-        if (type == "paragraph") {
+        if (type == "text") {
             return (
                 <Popup onClose={onClose}>
-                    <ParagraphCreator classe={classe} section={section}
+                    <TextCreator classe={classe} section={section}
                         onCreation={onCreation} />
                 </Popup>
             );
@@ -51,8 +51,8 @@ class ContentCreatorPopup extends React.Component {
             <Popup onClose={onClose}>
                 <div className="block row">
                     <h2>Select Content Type</h2>
-                    <button onClick={this.setType.bind(this, "paragraph")}
-                        className="button-mini">Paragraph</button><br/>
+                    <button onClick={this.setType.bind(this, "text")}
+                        className="button-mini">Text</button><br/>
                     <button onClick={this.setType.bind(this, "link")}
                         className="button-mini">Link</button><br/>
                     <button onClick={this.setType.bind(this, "file")}

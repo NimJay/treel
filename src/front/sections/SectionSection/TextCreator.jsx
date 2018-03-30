@@ -4,21 +4,21 @@ import { log } from '../../util/Global.js';
 
 
 /**
- * <ParagraphCreator>
+ * <TextCreator>
  * Props: classe, section, onCreation(content)
  */
-class ParagraphCreator extends React.Component {
+class TextCreator extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            paragraph: "",
+            text: "",
             currentAjax: null, // The current AJAX request.
             errorMessage: ""
         };
     }
 
-    setParagraph(e) {this.setState({ paragraph: e.target.value });}
+    setText(e) {this.setState({ text: e.target.value });}
 
     onSubmit(e) {
         e.preventDefault(); // Stop page refresh.
@@ -26,9 +26,9 @@ class ParagraphCreator extends React.Component {
         let { classe, section } = this.props,
             classeId = classe._id,
             sectionId = section._id,
-            { currentAjax, paragraph } = this.state,
-            content = { paragraph };
-        content.type = 'paragraph';
+            { currentAjax, text } = this.state,
+            content = { text };
+        content.type = 'text';
 
         if (currentAjax) return false;
 
@@ -62,15 +62,15 @@ class ParagraphCreator extends React.Component {
 
 
     render() {
-        let { paragraph, errorMessage, currentAjax } = this.state;
+        let { text, errorMessage, currentAjax } = this.state;
 
         return (
             <section className="block row">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <p className="errormessage">{errorMessage}</p>
-                    <textarea value={paragraph} autoFocus={true}
-                        placeholder="Paragraph"
-                        onChange={this.setParagraph.bind(this)}></textarea>
+                    <textarea value={text} autoFocus={true}
+                        placeholder="Text"
+                        onChange={this.setText.bind(this)}></textarea>
                     <div className="buttons-right">
                         <button type="submit"
                             disabled={currentAjax}>Create</button>
@@ -82,4 +82,4 @@ class ParagraphCreator extends React.Component {
 }
 
 
-export default ParagraphCreator;
+export default TextCreator;

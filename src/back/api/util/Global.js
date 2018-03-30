@@ -17,11 +17,11 @@ function getLoggedInUser(req, callback) {
  */
 function isValidContent(c) {
 
-    if (!['paragraph', 'link', 'file'].includes(c.type))
+    if (!['text', 'link', 'file'].includes(c.type))
         return false;
 
-    if (c.type == 'paragraph') {
-        if (!c.paragraph)
+    if (c.type == 'text') {
+        if (!c.text)
             return false;
 
     } else if (c.type == 'link') {

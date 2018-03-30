@@ -13,8 +13,8 @@ const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
 
     let div = null;
 
-    if (content.type == 'paragraph')
-        div = (<p>{content.paragraph}</p>);
+    if (content.type == 'text')
+        div = (<p>{content.text}</p>);
 
     else if (content.type == 'link') {
         let link = content.link;
