@@ -52,24 +52,25 @@ class ContentDeleter extends React.Component {
     render() {
         let { content } = this.props,
             { showPopup } = this.state;
-        return (
-            <span>
+
+        if (!showPopup) {
+            return (
                 <span className="icon icon-trash"
                     onClick={this.showPopup.bind(this)}></span>
-                {showPopup &&
-                    <Popup onDelete={this.onDelete.bind(this)}
-                        onClose={this.hidePopup.bind(this)}>
-                        <div className="block row">
-                            <h2>Permanently delete?</h2>
-                            <div className="buttons-right">
-                                <button className="button-red"
-                                    onClick={this.onDelete.bind(this)}>
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </Popup>}
-            </span>
+            )
+        }
+
+        return (
+            <Popup onDelete={this.onDelete.bind(this)}
+                onClose={this.hidePopup.bind(this)}>
+                <div className="block row">
+                    <h2>Permanently delete?</h2>
+                    <div className="buttons-right">
+                        <button className="button-red"
+                            onClick={this.onDelete.bind(this)}>Delete</button>
+                    </div>
+                </div>
+            </Popup>
         );
     }
 }
