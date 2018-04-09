@@ -1,13 +1,12 @@
 import React from 'react';
 import { ajax } from 'jquery';
-import { School, searchSchools } from '../../model/School.js';
-import { log } from '../../util/Global.js';
-import FileUploaderSection from '../FileUploaderSection.jsx';
+import { log } from '../../../util/Global.js';
+import FileUploaderSection from '../../FileUploaderSection.jsx';
 
 
 /**
  * <FileSelector>
- * Props: school, onSelect(school), createNewSchool()
+ * Props: classe, onSelect(file)
  */
 class FileSelector extends React.Component {
 
@@ -46,7 +45,6 @@ class FileSelector extends React.Component {
             showUploader = files && files.length == 0,
             currentAjax = null;
         error = error || !files;
-        if (files) files = files.map(s => new School(s));
         this.setState({ files, showUploader, error, currentAjax });
     }
     onAjaxError(error) {

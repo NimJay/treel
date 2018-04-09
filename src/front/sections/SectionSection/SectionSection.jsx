@@ -2,8 +2,8 @@ import React from 'react';
 import Popup from '../../components/Popup.jsx';
 import SectionEditor from './SectionEditor.jsx';
 import SectionMover from './SectionMover.jsx';
-import ContentCreatorPopup from './ContentCreatorPopup.jsx';
-import ContentDiv from './ContentDiv.jsx';
+import ContentCreatorPopup from './Content/ContentCreatorPopup.jsx';
+import ContentDiv from './Content/ContentDiv.jsx';
 
 
 /**

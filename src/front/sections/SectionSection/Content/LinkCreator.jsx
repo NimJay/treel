@@ -1,6 +1,6 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import { log } from '../../util/Global.js';
+import { log } from '../../../util/Global.js';
 
 
 /**
