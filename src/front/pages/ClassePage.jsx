@@ -154,6 +154,7 @@ class ClassePage extends React.Component {
                 onContentCreation={this.onContentCreation.bind(this, i)}
                 onContentMove={this.onContentMove.bind(this, i)}
                 onContentDeletion={this.onContentDeletion.bind(this, i)}
+                onContentUpdate={this.onContentUpdate.bind(this, i)}
                 onUpdate={this.onSectionUpdate.bind(this, i)}
                 onMove={this.onSectionMove.bind(this, i)}
                 classe={classe} />

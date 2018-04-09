@@ -1,18 +1,19 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import { log } from '../../../util/Global.js';
+import { log } from '../../../../util/Global.js';
+import FileSelector from './FileSelector.jsx';
 
 
 /**
- * <LinkCreator>
+ * <FileCreator>
  * Props: classe, section, onCreation(content)
  */
-class LinkCreator extends React.Component {
+class FileCreator extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            link: "",
+            file: null,
             name: "",
             description: "",
             currentAjax: null, // The current AJAX request.
@@ -20,7 +21,7 @@ class LinkCreator extends React.Component {
         };
     }
 
-    setLink(e) {this.setState({ link: e.target.value });}
+    setFile(file) {this.setState({ 'file': file, 'name': file.name });}
     setName(e) {this.setState({ name: e.target.value });}
     setDescription(e) {this.setState({ description: e.target.value });}
 
@@ -30,9 +31,10 @@ class LinkCreator extends React.Component {
         let { classe, section } = this.props,
             classeId = classe._id,
             sectionId = section._id,
-            { currentAjax, link, name, description } = this.state,
-            content = { link, name, description };
-        content.type = 'link';
+            { currentAjax, file, name, description } = this.state,
+            content = { name, description };
+        content.file = file._id;
+        content.type = 'file';
 
         if (currentAjax) return false;
 
@@ -66,17 +68,26 @@ class LinkCreator extends React.Component {
 
 
     render() {
-        let { link, name, description, errorMessage, currentAjax } = this.state;
+        let { classe } = this.props,
+            { file, name, description, errorMessage, currentAjax } = this.state;
+
+        if (!file) {
+            return (
+                <FileSelector classe={classe}
+                    onSelect={this.setFile.bind(this)} />
+            );
+        }
 
         return (
             <section className="block row">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <p className="errormessage">{errorMessage}</p>
-                    <input autoFocus={true} value={link} placeholder="Link"
-                        onChange={this.setLink.bind(this)} type="text" /><br/>
+                    <p>File: <a target="_blank" href={"/file/" + file._id}>
+                        {file.name}</a></p>
                     <input type="text" value={name} placeholder="Name"
-                        onChange={this.setName.bind(this)} />
-                    <textarea value={description} placeholder="Description"
+                        onChange={this.setName.bind(this)} autoFocus={true} />
+                    <textarea value={description}
+                        placeholder="Description"
                         onChange={this.setDescription.bind(this)}></textarea>
                     <div className="buttons-right">
                         <button type="submit"
@@ -89,4 +100,4 @@ class LinkCreator extends React.Component {
 }
 
 
-export default LinkCreator;
+export default FileCreator;

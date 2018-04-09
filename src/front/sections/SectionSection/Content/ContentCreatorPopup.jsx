@@ -1,8 +1,8 @@
 import React from 'react';
 import Popup from '../../../components/Popup.jsx';
-import FileCreator from './FileCreator.jsx';
-import LinkCreator from './LinkCreator.jsx';
-import TextCreator from './TextCreator.jsx';
+import FileCreator from './Creator/FileCreator.jsx';
+import LinkCreator from './Creator/LinkCreator.jsx';
+import TextCreator from './Creator/TextCreator.jsx';
 
 
 /**

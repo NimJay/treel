@@ -6,9 +6,9 @@
     }
     .contentdiv-icons {
         text-align: right;
-        > .icon {margin-right: 15px;}
+        .icon {margin-right: 15px;}
         > .icon:last-child {margin-right: 0px;}
-        > .icon.disabled {opacity: 0.2;}
+        .icon.disabled {opacity: 0.2;}
         .popup {text-align: left;}
     }
 }

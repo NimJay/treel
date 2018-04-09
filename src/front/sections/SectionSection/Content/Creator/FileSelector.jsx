@@ -1,7 +1,7 @@
 import React from 'react';
 import { ajax } from 'jquery';
-import { log } from '../../../util/Global.js';
-import FileUploaderSection from '../../FileUploaderSection.jsx';
+import { log } from '../../../../util/Global.js';
+import FileUploaderSection from '../../../FileUploaderSection.jsx';
 
 
 /**

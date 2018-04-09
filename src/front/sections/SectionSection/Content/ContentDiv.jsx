@@ -6,10 +6,11 @@ import ContentDeleter from './ContentDeleter.jsx';
 /**
  * <ContentDiv>
  * Props:
- *    classe, section, content, isEditable, isFirst, isLast, onMove(isMoveUp)
+ *    classe, section, content, isEditable, isFirst, isLast, onMove(isMoveUp),
+ *    onDeletion(), onUpdate(content)
  */
 const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
-    onMove, onDeletion }) => {
+    onMove, onDeletion, onUpdate }) => {
 
     let div = null;
 
@@ -32,14 +33,16 @@ const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
         <div className={"contentdiv row" + (isEditable ? ' editable' : '')}>
             {isEditable &&
                 <div className="contentdiv-icons">
+                    <ContentDeleter classeId={classe._id} sectionId={section._id}
+                        content={content} onDeletion={onDeletion} />
                     <ContentMover classeId={classe._id} sectionId={section._id}
                         contentId={content._id} isMoveUp={false}
                         disabled={isLast} onMove={null} onMove={onMove} />
                     <ContentMover classeId={classe._id} sectionId={section._id}
                         contentId={content._id} isMoveUp={true}
                         disabled={isFirst} onMove={null} onMove={onMove} />
-                    <ContentDeleter classeId={classe._id} sectionId={section._id}
-                        content={content} onDeletion={onDeletion} />
+                    {/*<ContentEditor classeId={classe._id} sectionId={section._id}
+                        content={content} onUpdate={onUpdate} />*/}
                 </div>}
             {div}
         </div>

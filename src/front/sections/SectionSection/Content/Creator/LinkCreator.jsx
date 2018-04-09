@@ -1,24 +1,28 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import { log } from '../../../util/Global.js';
+import { log } from '../../../../util/Global.js';
 
 
 /**
- * <TextCreator>
+ * <LinkCreator>
  * Props: classe, section, onCreation(content)
  */
-class TextCreator extends React.Component {
+class LinkCreator extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            text: "",
+            link: "",
+            name: "",
+            description: "",
             currentAjax: null, // The current AJAX request.
             errorMessage: ""
         };
     }
 
-    setText(e) {this.setState({ text: e.target.value });}
+    setLink(e) {this.setState({ link: e.target.value });}
+    setName(e) {this.setState({ name: e.target.value });}
+    setDescription(e) {this.setState({ description: e.target.value });}
 
     onSubmit(e) {
         e.preventDefault(); // Stop page refresh.
@@ -26,9 +30,9 @@ class TextCreator extends React.Component {
         let { classe, section } = this.props,
             classeId = classe._id,
             sectionId = section._id,
-            { currentAjax, text } = this.state,
-            content = { text };
-        content.type = 'text';
+            { currentAjax, link, name, description } = this.state,
+            content = { link, name, description };
+        content.type = 'link';
 
         if (currentAjax) return false;
 
@@ -62,15 +66,18 @@ class TextCreator extends React.Component {
 
 
     render() {
-        let { text, errorMessage, currentAjax } = this.state;
+        let { link, name, description, errorMessage, currentAjax } = this.state;
 
         return (
             <section className="block row">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <p className="errormessage">{errorMessage}</p>
-                    <textarea value={text} autoFocus={true}
-                        placeholder="Text"
-                        onChange={this.setText.bind(this)}></textarea>
+                    <input autoFocus={true} value={link} placeholder="Link"
+                        onChange={this.setLink.bind(this)} type="text" /><br/>
+                    <input type="text" value={name} placeholder="Name"
+                        onChange={this.setName.bind(this)} />
+                    <textarea value={description} placeholder="Description"
+                        onChange={this.setDescription.bind(this)}></textarea>
                     <div className="buttons-right">
                         <button type="submit"
                             disabled={currentAjax}>Create</button>
@@ -82,4 +89,4 @@ class TextCreator extends React.Component {
 }
 
 
-export default TextCreator;
+export default LinkCreator;
