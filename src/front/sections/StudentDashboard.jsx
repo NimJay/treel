@@ -62,6 +62,9 @@ class StudentDashboard extends React.Component {
         if (!isMounted) return null;
         if (currentAjax) return <LoadingSection />;
 
+        classes = classes.sort((a, b) =>
+            a.courseCode.toLowerCase() > b.courseCode.toLowerCase() ? 1 : -1);
+
         let activeDivs = classes.filter(c => c.isActive).map(c =>
             <ClasseDiv classe={c} key={c._id}
                 school={schools.filter(s => s._id == c.school).push(null)[0]} />
