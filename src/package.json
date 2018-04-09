@@ -37,6 +37,7 @@
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "mongoose": "^5.0.1",
+    "node-mailer": "^0.1.1",
     "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
