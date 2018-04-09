@@ -160,7 +160,7 @@ class ClassePage extends React.Component {
         );
 
         return (
-            <div>
+            <div id='page-classe'>
                 {app.isLoggedIn() && <Nav app={app} setApp={setApp} />}
                 <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
