@@ -57,10 +57,20 @@ class StudentDashboard extends React.Component {
     render () {
         let { app, setApp } = this.props,
             { isMounted, currentAjax, error, classes, schools,
-            showInActive, } = this.state;
+                showInActive } = this.state;
 
         if (!isMounted) return null;
         if (currentAjax) return <LoadingSection />;
+
+        let activeDivs = classes.filter(c => c.isActive).map(c =>
+            <ClasseDiv classe={c} key={c._id}
+                school={schools.filter(s => s._id == c.school).push(null)[0]} />
+        );
+
+        let inactiveDivs = classes.filter(c => !c.isActive).map(c =>
+            <ClasseDiv classe={c} key={c._id}
+                school={schools.filter(s => s._id == c.school).push(null)[0]} />
+        );
 
         return (
             <div>
@@ -71,14 +81,27 @@ class StudentDashboard extends React.Component {
                             Find Class
                         </Link>
                     </div>
+                    <div>{activeDivs}</div>
+                    {inactiveDivs.length > 0 && !showInActive &&
+                        <button className="button-mini"
+                        onClick={this.showInActive.bind(this)}>
+                        Show Inactive Classes</button>}
+                        {showInActive && <h2>Inactive Classes</h2>}
+                        {showInActive && inactiveDivs}
+                        {error && <p>Sorry, something went wrong.</p>}
                 </main>
-                <p className="block row">
-                    The StudentDashboard is to be implemented in March.
-                </p>
             </div>
         );
     }
 }
+
+const ClasseDiv = ({ classe, school }) => (
+    <Link className="classe" to={"class/" + classe._id}>
+        <div>{classe.courseCode}</div>
+        <div>{classe.courseName}</div>
+        <div>{classe.term}</div>
+    </Link>
+);
 
 const LoadingSection = () => (<div><p>Loading...</p></div>);
 
