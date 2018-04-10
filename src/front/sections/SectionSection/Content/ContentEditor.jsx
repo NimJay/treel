@@ -1,7 +1,7 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import Popup from '../../../../components/Popup.jsx';
-import { log } from '../../../../util/Global.js';
+import Popup from '../../../components/Popup.jsx';
+import { log } from '../../../util/Global.js';
 
 
 /**
