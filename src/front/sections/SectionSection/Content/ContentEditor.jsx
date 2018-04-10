@@ -107,7 +107,7 @@ class ContentEditor extends React.Component {
 
         return (
             <Popup onClose={this.hidePopup.bind(this)}>
-                <form className='block row' onClick={this.onSubmit.bind(this)}>
+                <form className='block row' onSubmit={this.onSubmit.bind(this)}>
                     <p className='errormessage'>{errorMessage}</p>
                     <Editor content={content}
                         setContent={this.setContent.bind(this)} />
