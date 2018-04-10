@@ -110,6 +110,15 @@ function loadSchemas() {
         mimeType: { type: String }
     });
     mongoose.model('File', file);
+
+    // Announcement
+    var announcement = Schema({
+        text: { type: String },
+        creator: { type: Schema.Types.ObjectId, ref: 'User' },
+        classe: { type: Schema.Types.ObjectId, ref: 'Classe' },
+        isEmail: { type: Boolean },
+    }, { timestamps: { createdAt: 'timeCreated' } });
+    mongoose.model('Announcement', announcement);
 }
 
 

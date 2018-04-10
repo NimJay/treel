@@ -61,9 +61,20 @@ function findSections(o, cb, classe, user) {
             if (!sections) return cb(o.err());
             // Remove deleted sections.
             sections.sections = sections.sections.filter(s => !s.isDeleted);
-            return findFollow(o.set('sections', sections), cb, classe, user);
+            o.set('sections', sections);
+            return findAnnouncements(o, cb, classe, user);
         }
     );
+}
+
+
+function findAnnouncements(o, cb, classe, user) {
+    let Announcement = mongoose.model('Announcement');
+    Announcement.find({ 'classe': classe._id }, (err, as) => {
+        if (err || !as) return cb(o.err('DATABASE'));
+        o.set('announcements', as);
+        return findFollow(o, cb, classe, user);
+    });
 }
 
 
