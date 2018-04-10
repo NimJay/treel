@@ -145,12 +145,12 @@ textarea:focus {border-left: solid 2px $color-green;}
 }
 
 .popup-wall .popup.contentcreatorpopup-selection {
-    max-width: 400px;
+    max-width: 300px;
     .block.row {
         text-align: center;
+        line-height: 2.5em;
         button.button-mini {
             font-size: 22px;
-            line-height: 1.5em;
         }
     }
 }
