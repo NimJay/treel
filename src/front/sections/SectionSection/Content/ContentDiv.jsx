@@ -1,6 +1,7 @@
 import React from 'react';
 import ContentMover from './ContentMover.jsx';
 import ContentDeleter from './ContentDeleter.jsx';
+import ContentEditor from './ContentEditor.jsx';
 
 
 /**
@@ -41,8 +42,8 @@ const ContentDiv = ({ classe, section, content, isEditable, isFirst, isLast,
                     <ContentMover classeId={classe._id} sectionId={section._id}
                         contentId={content._id} isMoveUp={true}
                         disabled={isFirst} onMove={null} onMove={onMove} />
-                    {/*<ContentEditor classeId={classe._id} sectionId={section._id}
-                        content={content} onUpdate={onUpdate} />*/}
+                    <ContentEditor classeId={classe._id} sectionId={section._id}
+                        content={content} onUpdate={onUpdate} />
                 </div>}
             {div}
         </div>
