@@ -17,7 +17,7 @@ function getLoggedInUser(req, callback) {
  */
 function isValidContent(c) {
 
-    if (!['text', 'link', 'file'].includes(c.type))
+    if (!c || !['text', 'link', 'file'].includes(c.type))
         return false;
 
     if (c.type == 'text') {

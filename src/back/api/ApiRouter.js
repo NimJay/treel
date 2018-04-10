@@ -23,6 +23,7 @@ router
     .post('/content/delete-content', require('./content/delete-content.js').post)
     .post('/content/get-files', require('./content/get-files.js').post)
     .post('/content/move-content', require('./content/move-content.js').post)
+    .post('/content/update-content', require('./content/update-content.js').post)
     .post('/content/upload-file', require('./content/upload-file.js').post)
     .post('/follow/create-follow', require('./follow/create-follow.js').post)
     .post('/follow/remove-follow', require('./follow/remove-follow.js').post)
