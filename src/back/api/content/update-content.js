@@ -69,8 +69,10 @@ function updateContent(o, sectionId, content, ss) {
     } else if (c.type == 'link') {
         c.link = content.link;
         c.name = content.name;
+        c.description = content.description;
     } else if (c.type == 'file') {
         c.name = content.name;
+        c.description = content.description;
     }
 
     ss.save((err, savedSs) => {
