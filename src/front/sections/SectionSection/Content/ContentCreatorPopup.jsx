@@ -48,7 +48,7 @@ class ContentCreatorPopup extends React.Component {
         }
 
         return (
-            <Popup onClose={onClose}>
+            <Popup className="contentcreatorpopup-selection" onClose={onClose}>
                 <div className="block row">
                     <h2>Select Content Type</h2>
                     <button onClick={this.setType.bind(this, "text")}

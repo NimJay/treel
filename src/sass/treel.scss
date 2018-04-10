@@ -144,6 +144,17 @@ textarea:focus {border-left: solid 2px $color-green;}
     }
 }
 
+.popup-wall .popup.contentcreatorpopup-selection {
+    max-width: 400px;
+    .block.row {
+        text-align: center;
+        button.button-mini {
+            font-size: 22px;
+            line-height: 1.5em;
+        }
+    }
+}
+
 @import 'grid';
 @import 'checkbox';
 @import 'nav';
