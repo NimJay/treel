@@ -117,7 +117,7 @@ function loadSchemas() {
         creator: { type: Schema.Types.ObjectId, ref: 'User' },
         classe: { type: Schema.Types.ObjectId, ref: 'Classe' },
         isEmail: { type: Boolean },
-    }, { timestamps: { createdAt: 'timeCreated' } });
+    }, { timestamps: { createdAt: 'timeCreated', updatedAt: 'timeUpdated' } });
     mongoose.model('Announcement', announcement);
 }
 

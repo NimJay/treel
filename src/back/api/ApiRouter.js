@@ -12,6 +12,7 @@ router.use('/content/upload-file', fileUpload(
     { limits: { fileSize: 50 * 1024 * 1024 } }));
 
 router
+    .post('/classe/create-announcement', require('./classe/create-announcement.js').post)
     .post('/classe/create-classe', require('./classe/create-classe.js').post)
     .post('/classe/get-classe', require('./classe/get-classe.js').post)
     .post('/classe/get-dashboard', require('./classe/get-dashboard.js').post)
