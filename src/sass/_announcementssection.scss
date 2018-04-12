@@ -1,0 +1,21 @@
+.announcementssection {
+
+    // 'Create Announcement'
+    > button:first-child {
+        padding-bottom: 15px;
+    }
+
+    .announcementssection-announcement {
+        padding: 14px 0px;
+        border-top: solid 1px rgba(0, 0, 0, 0.1);
+        > div:nth-child(2) {
+            font-size: 14px;
+        }
+    }
+
+    > button:last-child {padding-top: 15px;}
+
+    .announcementcreator .checkbox {
+        margin-top: 15px;
+    }
+}

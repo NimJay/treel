@@ -1,7 +1,10 @@
 import { ajax } from 'jquery';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import { Classe } from '../model/Classe.js';
+import AnnouncementsSection
+    from '../sections/AnnouncementsSection/AnnouncementsSection.jsx';
 import ClasseSection from '../sections/ClasseSection/ClasseSection.jsx';
 import FollowSection from '../sections/FollowSection.jsx';
 import SectionCreationSection from '../sections/SectionCreationSection.jsx';
@@ -19,7 +22,9 @@ class ClassePage extends React.Component {
             invalid: false,
             error: false,
             classe: null,
-            sections: null
+            sections: null,
+            follow: null,
+            announcements: null
         };
     }
 
@@ -43,13 +48,13 @@ class ClassePage extends React.Component {
     }
     onAjaxSuccess(data) {
         log(data);
-        let { error, classe, sections, follow } = data,
+        let { error, classe, sections, follow, announcements } = data,
             currentAjax = null;
         if (classe) classe = new Classe(classe);
         let invalid = error && error.code == 4;
         error = !!error;
-        this.setState(
-            { error, invalid, currentAjax, classe, sections, follow });
+        this.setState({ error, invalid, currentAjax, classe, sections, follow,
+            announcements });
     }
     onAjaxError(error) {
         log(error);
@@ -132,11 +137,17 @@ class ClassePage extends React.Component {
         this.setState({ sections: ss });
     }
 
+    onAnnouncementCreation(a) {
+        let { announcements } = this.state;
+        announcements.push(a);
+        this.setState({ announcements });
+    }
+
     render() {
 
         let { app, setApp } = this.props,
             { isMounted, currentAjax, invalid, error, classe, sections,
-                follow } = this.state;
+                follow, announcements } = this.state;
 
         if (isMounted) return false;
         if (currentAjax) return <LoadingSection app={app} setApp={setApp} />;
@@ -165,17 +176,21 @@ class ClassePage extends React.Component {
                 {app.isLoggedIn() && <Nav app={app} setApp={setApp} />}
                 <ClasseSection classe={classe} isEditable={isEditable}
                     onUpdate={this.setClasse.bind(this)} />
-                {isEditable &&
-                    <SectionCreationSection classeId={classe._id} isAtTop={true}
-                        onCreation={this.onSectionCreation.bind(this, true)} />}
                 {app.isLoggedIn() && !isEditable &&
                     <FollowSection follow={follow} classe={classe}
                         setFollow={this.setFollow.bind(this)} />}
+                <AnnouncementsSection classe={classe}
+                    announcements={announcements} isEditable={isEditable}
+                    onCreation={this.onAnnouncementCreation.bind(this)} />
+                {isEditable &&
+                    <SectionCreationSection classeId={classe._id} isAtTop={true}
+                        onCreation={this.onSectionCreation.bind(this, true)} />}
                 {sectionSections}
                 {isEditable && sections.sections.length > 0 &&
                     <SectionCreationSection classeId={classe._id}
                         isAtTop={false}
                         onCreation={this.onSectionCreation.bind(this, false)} />}
+                {!app.isLoggedIn() && <Footer />}
             </div>
         );
     }
@@ -190,5 +205,6 @@ const Section = ({ p, app, setApp }) => (
 const LoadingSection = (props) => <Section p="Loading..." {...props} />;
 const InvalidSection = (props) => <Section p="This page is either non-existent or private." {...props} />;
 const ErrorSection = (props) => <Section p="Sorry, something went wrong." {...props} />;
+const Footer = () => (<footer className='block'><p className='row'><Link to='/'><img src='/favicon.png' /></Link></p></footer>);
 
 export default ClassePage;

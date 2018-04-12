@@ -20,6 +20,7 @@
         max-width: 750px;
         background-color: white;
         box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.2);
+        &.popup-mini {max-width: 300px;}
         > .block.row {
             padding-top: 0px;
             h1:first-child, h2:first-child, h3:first-child {margin-top: 0px;}

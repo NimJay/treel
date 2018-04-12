@@ -121,7 +121,10 @@ textarea:focus {border-left: solid 2px $color-green;}
     margin-top: 80px;
 }
 #page-classe {
-    padding-bottom: 50px;
+    footer {
+        margin-top: 80px;
+        border-top: solid 1px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .followsection button.button-mini {
@@ -160,6 +163,7 @@ textarea:focus {border-left: solid 2px $color-green;}
 @import 'nav';
 @import 'popup';
 @import 'selector';
+@import 'announcementssection';
 @import 'classecreationsection';
 @import 'classesearchsection';
 @import 'classesection';
