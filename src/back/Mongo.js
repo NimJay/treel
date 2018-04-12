@@ -119,6 +119,14 @@ function loadSchemas() {
         isEmail: { type: Boolean },
     }, { timestamps: { createdAt: 'timeCreated', updatedAt: 'timeUpdated' } });
     mongoose.model('Announcement', announcement);
+
+    // Verification
+    var verification = Schema({
+        code: { type: String },
+        user: { type: Schema.Types.ObjectId, ref: 'User' },
+        isVerified: { type: Boolean },
+    }, { timestamps: { createdAt: 'timeCreated', updatedAt: 'timeUpdated' } });
+    mongoose.model('Verification', verification);
 }
 
 
