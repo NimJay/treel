@@ -1,6 +1,6 @@
 import { ajax } from 'jquery';
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { User } from '../model/User.js';
 import LogoutButton from '../components/LogoutButton.jsx';
 
@@ -9,7 +9,7 @@ const SignUpPage = ({ app, setApp }) => (
     <div id="page-signup">
         {app.isLoggedIn()
             ? <LoggedInSection setApp={setApp} />
-            : <SignUpSectionWithRouter setApp={setApp} />}
+            : <SignUpSection />}
         <nav className="block row">
             <Link to="/">Home</Link>
         </nav>
@@ -123,7 +123,6 @@ class SignUpSection extends React.Component {
         );
     }
 }
-const SignUpSectionWithRouter = withRouter(SignUpSection);
 
 const UserCreatedSection = ({ user }) => (
     <section className='block row'>
