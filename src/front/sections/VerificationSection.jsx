@@ -13,7 +13,8 @@ class VerificationSection extends React.Component {
             isMounted: false,
             currentAjax: null,
             ajaxError: false, // true iff ajax() failed.
-            error: null // The error returned by AJAX.
+            error: null, // The error returned by AJAX.
+            user: null
         };
     }
 
@@ -33,8 +34,11 @@ class VerificationSection extends React.Component {
         log(data);
         let { error, user } = data,
             currentAjax = null;
-        if (user) this.props.setApp({ 'user': new User(user) }); // Log in.
-        this.setState({ currentAjax, error });
+        if (user) {
+            user = new User(user);
+            this.props.setApp({ user }); // Log in.
+        }
+        this.setState({ currentAjax, error, user });
     }
     onAjaxError(error) {
         log(error);
@@ -42,17 +46,28 @@ class VerificationSection extends React.Component {
     }
 
     render() {
-        let { isMounted, currentAjax, ajaxError, error } = this.state;
+        let { isMounted, currentAjax, ajaxError, error, user } = this.state;
 
         if (!isMounted) return null;
         if (currentAjax) return <LoadingSection />;
         if (ajaxError) return <ErrorSection />;
         if (error && error.code == 4) return <InvalidSection />;
-        if (error) return <ErrorSection />;
+        if (error || !user) return <ErrorSection />;
         return (
-            <main className='block row'>
-                <h1>Success</h1>
-                <p>Your email has been verified.</p>
+            <main className='block'>
+                <div className='row'>
+                    <p>Your email has been verified.</p>
+                </div>
+
+                <div className='row'>
+                    {user.isInstructor() &&
+                        <Link to='/class/new'
+                            className='button'>Create Class</Link>}
+                    {user.isInstructor() &&
+                        <p>Or <Link to='/class/new'>find a class</Link>.</p>}
+                    {user.isStudent() &&
+                        <Link to='/search' className='button'>Find Class</Link>}
+                </div>
             </main>
         );
     }
