@@ -2,6 +2,7 @@ import { ajax } from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../model/User.js';
+import { log } from '../util/Global.js';
 import InstructorDashboard from '../sections/InstructorDashboard.jsx';
 import StudentDashboard from '../sections/StudentDashboard.jsx';
 
@@ -67,13 +68,17 @@ class LoginForm extends React.Component {
         this.setState({ currentAjax });
     }
     onAjaxSuccess(data) {
-        // TODO: log(data) using a helper log function.
-        console.log(data);
+        log(data);
         let { user, error } = data,
             e = "", // Error message.
             callback = null;
-        if (error && error.code == 7) e = "Invalid combination.";
-        else if (error || !user) e = "Sorry, something went wrong.";
+
+        if (error && error.code == 7)
+            e = "Invalid combination.";
+        else if (error && error.code == 9)
+            e = "You must verify your email address.";
+        else if (error || !user)
+            e = "Sorry, something went wrong.";
         else {
             let { setApp, history } = this.props;
             callback = () => {
@@ -83,8 +88,8 @@ class LoginForm extends React.Component {
         this.setState({ currentAjax: null, errorMessage: e }, callback);
     }
     onAjaxError(error) {
-        // TODO: log(error) using a helper log function.
-        console.log(error);
+        log(error);
+
         this.setState({
             errorMessage: "Sorry, something went wrong.",
             currentAjax: null

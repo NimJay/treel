@@ -60,7 +60,11 @@ const ERRORS = {
     },
     'NOT_LOGGED_IN': {
         code: 8,
-        message: 'Must be logged in' 
+        message: 'Must be logged in'
+    },
+    'NOT_VERIFIED': {
+        code: 9,
+        message: 'Email not verified'
     }
 };
 

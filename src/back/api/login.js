@@ -26,13 +26,23 @@ function post(req, res) {
             if (err) return o.err().out();
             else if (!result) return o.err('INVALID_COMBO').out();
 
-            // Login!
             if (err) return o.err().out();
-            req.session.userId = user._id;
-            o.set('user', user).out();
-
+            o.set('user', user);
+            return checkVerification(o, user);
         });
 
+    });
+}
+
+
+// Check if email has been verified.
+function checkVerification(o, user) {
+    let Verification = mongoose.model('Verification');
+    Verification.findOne({ user: user.id, isVerified: true }, (err, v) => {
+        if (err) return o.err('DATABASE').out();
+        if (!v) return o.err('NOT_VERIFIED').out();
+        req.session.userId = user._id; // Login!
+        o.out();
     });
 }
 
