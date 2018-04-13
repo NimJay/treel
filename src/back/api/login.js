@@ -28,7 +28,7 @@ function post(req, res) {
 
             if (err) return o.err().out();
             o.set('user', user);
-            return checkVerification(o, user);
+            return checkVerification(req, o, user);
         });
 
     });
@@ -36,7 +36,7 @@ function post(req, res) {
 
 
 // Check if email has been verified.
-function checkVerification(o, user) {
+function checkVerification(req, o, user) {
     let Verification = mongoose.model('Verification');
     Verification.findOne({ user: user.id, isVerified: true }, (err, v) => {
         if (err) return o.err('DATABASE').out();
