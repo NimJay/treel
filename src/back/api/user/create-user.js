@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { Output } = require('../util/Output.js');
+const Emailer = require('../util/Emailer.js');
 
 /**
  * Create a user.
@@ -42,14 +43,30 @@ function post(req, res) {
                     newUser = new User({ email, passwordHash, name, type });
                     newUser.save(function (err, newUser) {
                         if (err) return o.err('DATABASE').out();
-                        req.session.userId = newUser._id; // Login.
-                        return o.set('user', newUser).out();
+                        o.set('user', newUser).out();
+                        return createVerification(o, newUser);
                     });
-
                 });
             });
         }
     });
 }
+
+// Create a Verification and send email.
+function createVerification(o, user) {
+
+    // Generate unique code.
+    let time = new Date().valueOf().toString(36).substring(2),
+        rand = Math.random().toString(36).substring(5),
+        code = time + rand;
+
+    let Verification = mongoose.model('Verification'),
+        v = new Verification({ user, code });
+    v.isVerified = false;
+    v.save((err, savedV) => {
+        // TODO: Uncomment. Emailer.sendVerification(user.email, savedV.code);
+    });
+}
+
 
 module.exports = { post };

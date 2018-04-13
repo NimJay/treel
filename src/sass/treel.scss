@@ -42,6 +42,7 @@ a, button.button-mini {
     box-shadow: none;
 }
 // a:visited {color: $color-purple;}
+strong {font-weight: bold;}
 
 button, a.button {
     display: inline-block;
@@ -113,6 +114,7 @@ textarea:focus {border-left: solid 2px $color-green;}
 }
 
 .color-red {color: $color-red;}
+.color-green {color: $color-green;}
 .align-right {text-align: right;}
 
 #page-home {
@@ -125,6 +127,9 @@ textarea:focus {border-left: solid 2px $color-green;}
         margin-top: 80px;
         border-top: solid 1px rgba(0, 0, 0, 0.1);
     }
+}
+#page-signup {
+    .block {max-width: 500px;}
 }
 
 .followsection button.button-mini {

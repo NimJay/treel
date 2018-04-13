@@ -6,11 +6,11 @@ import LogoutButton from '../components/LogoutButton.jsx';
 
 
 const SignUpPage = ({ app, setApp }) => (
-    <div>
+    <div id="page-signup">
         {app.isLoggedIn()
             ? <LoggedInSection setApp={setApp} />
             : <SignUpSectionWithRouter setApp={setApp} />}
-        <nav className="block row" style={{maxWidth: "500px"}}>
+        <nav className="block row">
             <Link to="/">Home</Link>
         </nav>
     </div>
@@ -18,7 +18,7 @@ const SignUpPage = ({ app, setApp }) => (
 
 
 const LoggedInSection = ({ setApp }) => (
-    <section className="block row" style={{maxWidth: "500px"}}>
+    <section className="block row">
         <p>You must log out to create a new account.</p>
         <LogoutButton setApp={setApp} />
     </section>
@@ -27,7 +27,6 @@ const LoggedInSection = ({ setApp }) => (
 
 /**
  * <SignUpSection>
- * setApp({user}): function for modifying the global App object.
  */
 class SignUpSection extends React.Component {
 
@@ -39,7 +38,8 @@ class SignUpSection extends React.Component {
             type: null,
             name: '',
             errorMessage: null,
-            currentAjax: null
+            currentAjax: null,
+            user: null // The User created and returned from server.
         }
     }
 
@@ -66,19 +66,13 @@ class SignUpSection extends React.Component {
         // TODO: log(data) using a helper log function.
         console.log(data);
         let { user, error } = data,
-            e = "", // Error message.
-            callback = null;
+            e = ""; // Error message.
         if (error && error.code == 4) e = "Invalid input.";
         else if (error && error.code == 6) e = "Email already in use.";
         else if (error || !user) e = "Sorry, something went wrong."
-        else {
-            let { setApp, history } = this.props;
-            callback = () => {
-                setApp({ user: new User(user) }); // Login!
-                history.push('/');
-            }
-        }
-        this.setState({ currentAjax: null, errorMessage: e }, callback);
+        else user = new User(user);
+
+        this.setState({ currentAjax: null, errorMessage: e, user: user });
     }
     onAjaxError(error) {
         // TODO: log(error) using a helper log function.
@@ -97,11 +91,14 @@ class SignUpSection extends React.Component {
 
     render() {
 
-        let { email, password, type, name, errorMessage, currentAjax }
+        let { email, password, type, name, errorMessage, currentAjax, user }
             = this.state;
 
+        if (user)
+            return <UserCreatedSection user={user} />;
+
         return (
-            <main className="block row" style={{maxWidth: "500px"}}>
+            <main className="block row">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <p className="errormessage">{errorMessage}</p>
                     <input type="text" placeholder="Email" autoFocus={true}
@@ -127,6 +124,18 @@ class SignUpSection extends React.Component {
     }
 }
 const SignUpSectionWithRouter = withRouter(SignUpSection);
+
+const UserCreatedSection = ({ user }) => (
+    <section className='block row'>
+        <h2>Verify Email</h2>
+        <p>
+            We just sent a verification email to{' '}
+            <strong className='color-green'>{user.email}</strong>.<br/>
+            Please click the link in that email to start using Treel.
+        </p>
+        <p>Can't find the email? Check your spam/junk folder.</p>
+    </section>
+);
 
 /**
  * Props:
