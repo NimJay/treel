@@ -36,6 +36,7 @@ router
     .post('/section/move-section', require('./section/move-section.js').post)
     .post('/section/update-section', require('./section/update-section.js').post)
     .post('/user/create-user', require('./user/create-user.js').post)
-    .post('/user/update-user', require('./user/update-user.js').post);
+    .post('/user/update-user', require('./user/update-user.js').post)
+    .post('/verification/verify', require('./verification/verify.js').post);
 
 module.exports = router;
