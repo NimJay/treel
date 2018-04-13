@@ -16,10 +16,11 @@ import { App } from './util/App.js';
 import AboutPage from './pages/AboutPage.jsx';
 import ClasseCreationPage from './pages/ClasseCreationPage.jsx';
 import ClassePage from './pages/ClassePage.jsx';
+import ClasseSearchPage from './pages/ClasseSearchPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
-import ClasseSearchPage from './pages/ClasseSearchPage.jsx';
+import VerificationPage from './pages/VerificationPage.jsx';
 
 
 /**
@@ -64,6 +65,7 @@ class Treel extends React.Component {
                     <Route path="/class/new" render={renderPage.bind(null, ClasseCreationPage)} />
                     <Route path="/class/:classeId" render={renderPage.bind(null, ClassePage)} />
                     <Route path="/search" render={renderPage.bind(null, ClasseSearchPage)} />
+                    <Route path="/verify/:code" render={renderPage.bind(null, VerificationPage)} />
                     <Route path="/sign-up" render={renderPage.bind(null, SignUpPage)} />
                     <Route path="*" render={renderPage.bind(null, NotFoundPage)} />
                 </Switch>
