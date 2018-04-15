@@ -64,7 +64,7 @@ function createVerification(o, user) {
         v = new Verification({ user, code });
     v.isVerified = false;
     v.save((err, savedV) => {
-        // TODO: Uncomment. Emailer.sendVerification(user.email, savedV.code);
+        Emailer.sendVerification(user.email, savedV.code);
     });
 }
 

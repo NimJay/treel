@@ -14,6 +14,9 @@ let transporter = nodemailer.createTransport({
 
 function sendVerification(email, code, callback) {
 
+    if (!CONFIG.EMAIL_ENABLED)
+        return callback(null, [], [email]);
+
     let link = `${CONFIG.URL}/verify/${code}`,
 		html = `
 <div style="font-size: 20px;font-family: sans-serif;text-align: center;padding: 50px 10px;">
@@ -41,6 +44,9 @@ function announce(text, user, classe, emails, callback) {
     emails = emails
         .filter(isemail.validate)
         .map(e => e.toLowerCase());
+
+    if (!CONFIG.EMAIL_ENABLED)
+        return callback(null, [], emails);
 
     let options = {
         'from': `${user.name} <${CONFIG.EMAIL}>`,

@@ -4,9 +4,10 @@ const CONFIG = {
     'FILES_DIR': __dirname + '/file/',
     'URL': 'http://localhost:8080',
 
-    // Treel requires an SMPT email account to deliver all emails.
+    // Treel requires an SMTP email account to deliver all emails.
     'EMAIL': 'treel.app@gmail.com',
-    'EMAIL_PASSWORD': 'machinelearning95G'
+    'EMAIL_PASSWORD': 'machinelearning95G',
+    'EMAIL_ENABLED': false
 };
 
 module.exports = CONFIG;
