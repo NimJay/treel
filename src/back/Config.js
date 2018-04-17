@@ -6,7 +6,7 @@ const CONFIG = {
 
     // Treel requires an SMTP email account to deliver all emails.
     'EMAIL': 'treel.app@gmail.com',
-    'EMAIL_PASSWORD': 'machinelearning95G',
+    'EMAIL_PASSWORD': '',
     'EMAIL_ENABLED': false
 };
 
